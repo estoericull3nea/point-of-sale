@@ -2,11 +2,13 @@
 #include<string>
 #include<vector>
 #define c cout <<
+
 using namespace std;
 
-
 class Burger_POS{
+
 	public:
+
 		int picking_order;
 		char b;
 		bool ready;
@@ -14,11 +16,8 @@ class Burger_POS{
 		char order_again;
 		
 		Burger_POS(){
-			//counter=0;
-			
 			b = 'b';
 			ready = false;
-			
 		}
 		
 		vector<string> foods;
@@ -38,7 +37,7 @@ class Burger_POS{
 			
 			c "\n\n\t==========================================================\n\n";
 			
-		} // end of beef
+		} 
 		void chick_burgers(){
 			
 			c "\n\n\t================ Chicken Burgers Menu ====================\n\n";
@@ -52,8 +51,7 @@ class Burger_POS{
 			
 			c "\n\n\t==========================================================\n\n";
 			
-		} // end of chick		
-		
+		} 
 		
 		void pick_what_menu(char menu){
 			if(menu == 'b' || menu == 'B'){
@@ -71,11 +69,10 @@ class Burger_POS{
 			}else{
 				c "Invalid Value!\n";
 			}
-		} // end of pick_what_menu
+		}
 		
 		void for_beef(char b){
 			ready = true;
-			
 			order_again = 'y';
 			
 			while(order_again == 'y' || order_again == 'Y'){
@@ -124,23 +121,24 @@ class Burger_POS{
 				cin >> order_again;
 				
 				if(order_again == 'y' || order_again == 'Y'){
-					//counter++;
-					//foods.resize(counter);
+
 					system("cls");
 					beef_burgers();
 					
 				}else{
+
 					order_again = 'n';
 					order_in_another_burger();
 					display_order();
 					c "\nTotal is: " << get_total() << "\n";
 					get_total();\
 					age_comp();
+                    
 				}
 				
 			}
 			
-		} // end of for_beef
+		} 
 	
 		void delete_item_in_foods(){
 			
@@ -157,23 +155,18 @@ class Burger_POS{
 				
 				display_order();
 				
-				
 				c "\nEnter number do you want to delete: ";\
 				cin >> number_to_delete;
 				
 				c "\n" << foods.at(number_to_delete-1) << " is selected!\n";
 				
-				
 				c "\nPress R to remove Item, Press D to decrease the quantity: ";
 				cin >> r_or_d;
-				
-				
 				
 				if(r_or_d == 'r' || r_or_d == 'R'){ // r
 					
 					if(foods.size() == 1){
 						
-
 						foods.clear();
 						no_order_in_lists();
 						
@@ -190,7 +183,6 @@ class Burger_POS{
 					
 					display_order();
 					c "\n\n";
-					
 					
 					c "Do you want to delete your item? [y/n]: ";
 					cin >> delete_or_not;
@@ -211,13 +203,8 @@ class Burger_POS{
 						
 					}
 					
-					
-					
 				}else if(r_or_d == 'd' || r_or_d == 'D'){
 					
-							
-					
-				
 					if(quantity.size() == 1){
 						
 						int decrease_quantity;
@@ -225,8 +212,7 @@ class Burger_POS{
 						c "\n" << foods.at(number_to_delete-1) << " is Selected!\n";
 						
 						c "\nEnter Number to decrease the Quantity: ";
-					cin >> decrease_quantity;
-					
+					    cin >> decrease_quantity;
 					
 					if(decrease_quantity > quantity.at(number_to_delete-1) || decrease_quantity == quantity.at(number_to_delete-1)){
 						
@@ -237,8 +223,6 @@ class Burger_POS{
 					
 					int new_value_of_quantity = quantity.at(number_to_delete-1) - decrease_quantity;
 					quantity.insert(quantity.begin() + number_to_delete - 1, new_value_of_quantity);
-					
-				
 					
 					c "Quantity is Decresed!\n";
 					
@@ -291,8 +275,6 @@ class Burger_POS{
 							
 						}
 						
-					
-						
 						c "Quantity is Decresed!\n";
 						
 						system("cls");
@@ -317,9 +299,7 @@ class Burger_POS{
 							exit(1);
 							
 						}
-						
-					} // end > 1
-					
+					}
 				}
 				
 			}else{
@@ -327,7 +307,7 @@ class Burger_POS{
 				exit(1);
 			}
 			
-		} // delete_item_in_foods
+		} 
 		
 		void for_chick(char b){ 
 			
@@ -341,7 +321,6 @@ class Burger_POS{
 				
 				c "How many: ";
 				cin >> _quantity;
-				
 				
 				if(picking_order == 1){
 					
@@ -378,8 +357,6 @@ class Burger_POS{
 				c "Do you want to order again? [y/n]: ";
 				cin >> order_again;
 				
-				
-				
 				if(order_again == 'y' || order_again == 'Y'){
 					//counter++;
 					//foods.resize(counter);
@@ -394,10 +371,9 @@ class Burger_POS{
 					get_total();\
 					age_comp();
 				}
-				
 			} 
 			
-		} // end of chicken
+		} 
 		
 		void order_in_another_burger(){
 			char order_in_another;
@@ -415,7 +391,6 @@ class Burger_POS{
 					for_chick('c');
 					
 				}
-				
 			}else{
 				
 				system("cls");
@@ -429,11 +404,8 @@ class Burger_POS{
 					for_beef('b');
 					
 				}
-				
 			}
-					
-		} // end of order_in_another_burger
-		
+		} 
 		
 		void display_order(){
 			
@@ -444,7 +416,6 @@ class Burger_POS{
 			for(int i=0;i<foods.size();i++){
 				c "  " << i+1 << ". " << foods.at(i) << "\t      " << quantity.at(i) << "\n";
 			}
-			
 		}
 		
 		int get_total(){
@@ -454,7 +425,6 @@ class Burger_POS{
 				s += (quantity.at(i) * price.at(i));
 			}
 			return s;
-			
 		}
 		
 		void age_comp(){
@@ -474,7 +444,6 @@ class Burger_POS{
 		}
 		
 		void senior_comp(){
-			
 			
 			int temp = get_total() * .9;
 			int d = get_total() * .10;
@@ -542,8 +511,6 @@ class Burger_POS{
 						
 					}
 			}
-				
-				
 			}
 		} // end of payment_method
 		
@@ -560,15 +527,7 @@ class Burger_POS{
 			pick_what_menu(picking);
 			
 		}
-			
-
-	
-		
-
-		
 };
-
-
 
 int main(){
 	char pick_menu;
@@ -583,9 +542,5 @@ int main(){
 	cin >> pick_menu;	
 	
 	_burger.pick_what_menu(pick_menu);
-	
-	
-	
-	
 	return 0;
 }
