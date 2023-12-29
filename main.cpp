@@ -419,7 +419,8 @@ public:
 					do {
 						cout << "\nEnter Number to decrease the Quantity: ";
 
-						if (!(cin >> decrease_quantity) || decrease_quantity <= 0 || decrease_quantity > quantity.size()) {
+						if (!(cin >> decrease_quantity) || decrease_quantity <= 0 || decrease_quantity > quantity.at(number_to_delete - 1)) {
+
 							// Input is not a valid non-negative integer
 							cin.clear();  // Clear the error flag
 							cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
@@ -444,9 +445,17 @@ public:
 
 					// system("cls");
 
+					// cout << "quantity value: " << quantity.at(number_to_delete - 1) << "\n";
+
+					
+
 					cout << "\n\t\t=======================================" << endl;
 					c "\t\t\tQuantity is Decresed!\n";
 					cout << "\t\t=======================================\n" << endl;
+					if (quantity.at(number_to_delete - 1) == 0) {
+						// remove index of that is the quantity if 0
+						// bug
+					}
 					display_order();
 					c "\n\n";
 
@@ -477,8 +486,8 @@ public:
 
 					do {
 						cout << "\nEnter Number to decrease the Quantity: ";
-						cout << "quantity is: " << quantity.size() << "\n";
-						if (!(cin >> decrease_quantity) || decrease_quantity <= 0 || decrease_quantity > quantity.size()) {
+						if (!(cin >> decrease_quantity) || decrease_quantity <= 0 || decrease_quantity > quantity.at(number_to_delete - 1)) {
+
 							// Input is not a valid non-negative integer
 							cin.clear();  // Clear the error flag
 							cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
@@ -507,6 +516,12 @@ public:
 						quantity.insert(quantity.begin() + number_to_delete - 1, new_value_of_quantity);
 
 					}
+
+					// cout << "quantity value: " << quantity.at(number_to_delete - 1) << "\n";
+					if (quantity.at(number_to_delete - 1) == 0) {
+						cout << "not enough q\n";
+					}
+
 
 					cout << "\n\t\t=======================================" << endl;
 					c "\t\t\tQuantity is Decresed!\n";
