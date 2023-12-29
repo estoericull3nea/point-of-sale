@@ -367,6 +367,8 @@ public:
 				if (foods.size() == 1) {
 
 					foods.clear();
+					quantity.clear();
+					price.clear();
 					no_order_in_lists();
 
 					exit(1);
@@ -642,7 +644,7 @@ public:
 
 		do {
 			cout << "\nEnter your Age (age >= 60 : 10% Discounted): ";
-			if (!(cin >> age) || age < 0) {
+			if (!(cin >> age) || age <= 0) {
 				// Input is not a valid non-negative integer
 				cin.clear();  // Clear the error flag
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
