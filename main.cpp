@@ -136,6 +136,7 @@ public:
 
 
 			// ====================================== edit order ==========================================================
+		start:
 			char edit_or_not;
 			do {
 				cout << "Do you want to edit your order? [y/n]: ";
@@ -198,9 +199,15 @@ public:
 
 						show_beef_burgers_menu();
 						show_chick_burgers_menu();
+						// cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n"; 
 						char pick_menu;
+						cout << "Previous order is: " << beef_menu_init.at(picking_order - 1) << " and quantity is " << _quantity << "\n";
 
 						do {
+							cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+
+
+
 							// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
 							cout << "\nB - Beef Burger\n";
 							cout << "C - Chicken Burger\n";
@@ -249,9 +256,37 @@ public:
 
 							cout << "\n" << beef_menu_init.at(picking_order - 1) << " is selected!\n\n";
 							cout << "Order Edited\n";
-						}
-					} else if(option == 2) {
 
+							cout << "\nOrder(s) made!\n\n";
+							cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n";
+							cout << "Quantity: " << _quantity << "\n\n";
+
+							goto start;
+						}
+					} else if (option == 2) {
+						cout << "Previous quantity of " << beef_menu_init.at(picking_order - 1) << " is " << _quantity << "\n";
+
+						do {
+							cout << "Enter new quantity: ";
+							if (!(cin >> _quantity) || _quantity < 1) {
+
+								cin.clear();  // Clear the error flag
+								cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+
+								cout << "\n\t\t===============================================================" << endl;
+								cout << "\t\t  Error message: Please enter a valid integer & valid quantity." << endl;
+								cout << "\t\t===============================================================\n" << endl;
+							} else {
+								// Valid input, break out of the loop
+								break;
+							}
+						} while (true);
+
+						cout << "\nOrder(s) made!\n\n";
+						cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n";
+						cout << "Quantity: " << _quantity << "\n\n";
+
+						goto start;
 					}
 
 				}
