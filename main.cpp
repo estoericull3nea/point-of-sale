@@ -134,6 +134,8 @@ public:
 			cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n";
 			cout << "Quantity: " << _quantity <<"\n\n";
 
+			// code here to verify the and edit the order
+
 			if (picking_order == 1) {
 
 				foods.push_back("Beef Burger    ");
