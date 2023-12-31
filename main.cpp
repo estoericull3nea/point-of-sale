@@ -29,7 +29,7 @@ public:
 	vector<int> price;
 
 	// ============================== Show Burger Menu ==============================
-	void beef_burgers() {
+	void show_beef_burgers_menu() {
 		c "\n\n\t=================== Beef Burgers Menu ====================\n\n";
 		c "\n   \t\t\tLists\t\tPrice\n\n";
 		c "\t\t1. Beef Burger\t\t 120\n";
@@ -41,7 +41,7 @@ public:
 	}
 
 	// ============================== Show Chicken Menu ==============================
-	void chick_burgers() {
+	void show_chick_burgers_menu() {
 		c "\n\n\t================ Chicken Burgers Menu ====================\n\n";
 		c "\n   \t\t\tLists\t\tPrice\n\n";
 		c "\t\t1. Spicy Tandoori\t 100\n";
@@ -58,18 +58,17 @@ public:
 
 		if (upperMenu == 'B') {
 			// system("cls");
-			beef_burgers();
+			show_beef_burgers_menu();
 			for_beef(menu);
 		} else if (upperMenu == 'C') {
 			// system("cls");
-			chick_burgers();
+			show_chick_burgers_menu();
 			for_chick(menu);
 		} else {
 			// Handle invalid input
 			cout << "Invalid menu choice." << endl;
 		}
 	}
-
 
 	// ============================== If Beef Burger Selected ==============================
 	void for_beef(char b) {
@@ -161,7 +160,7 @@ public:
 			if (order_again == 'y' || order_again == 'Y') {
 
 				// system("cls");
-				beef_burgers();
+				show_beef_burgers_menu();
 
 			} else {
 
@@ -271,7 +270,7 @@ public:
 				//counter++;
 				//foods.resize(counter);
 				// system("cls");
-				chick_burgers();
+				show_chick_burgers_menu();
 
 			} else {
 				order_again = 'n';
@@ -346,7 +345,7 @@ public:
 				}
 			} while (true);
 
-			if (r_or_d == 'r' || r_or_d == 'R') { // r
+			if (r_or_d == 'r' || r_or_d == 'R') {
 
 				char sure_or_not;
 				do {
@@ -373,7 +372,9 @@ public:
 
 					exit(1);
 
-				} else if (toupper(sure_or_not) == 'Y') {
+				}
+
+				if (toupper(sure_or_not) == 'Y') {
 					foods.erase(foods.begin() + number_to_delete - 1);
 					quantity.erase(quantity.begin() + number_to_delete - 1);
 					price.erase(price.begin() + number_to_delete - 1);
@@ -401,7 +402,7 @@ public:
 						c "\nTotal is: " << get_total() << "\n";
 						payment_method(get_total());
 
-						exit(1);
+						// exit(1);
 
 					}
 				}
@@ -433,12 +434,16 @@ public:
 						}
 					} while (true);
 
-					//					if(decrease_quantity > quantity.at(number_to_delete-1) || decrease_quantity == quantity.at(number_to_delete-1)){
-					//						
-					//						c "Invalid Decrease!\n";
-					//						exit(1);
-					//						
-					//					}
+					if (foods.size() == 1) {
+
+						foods.clear();
+						quantity.clear();
+						price.clear();
+						no_order_in_lists();
+
+						exit(1);
+
+					}
 
 					int new_value_of_quantity = quantity.at(number_to_delete - 1) - decrease_quantity;
 					quantity.insert(quantity.begin() + number_to_delete - 1, new_value_of_quantity);
@@ -447,35 +452,54 @@ public:
 
 					// cout << "quantity value: " << quantity.at(number_to_delete - 1) << "\n";
 
-					
+
 
 					cout << "\n\t\t=======================================" << endl;
 					c "\t\t\tQuantity is Decresed!\n";
 					cout << "\t\t=======================================\n" << endl;
 					if (quantity.at(number_to_delete - 1) == 0) {
-						// remove index of that is the quantity if 0
-						// bug
+						foods.erase(foods.begin() + (number_to_delete - 1));
+						price.erase(price.begin() + (number_to_delete - 1));
+						quantity.erase(quantity.begin() + (number_to_delete - 1));
 					}
-					display_order();
-					c "\n\n";
 
-					c "Do you want to delete your item? [y/n]: ";
-					cin >> delete_or_not;
-
-					if (delete_or_not == 'y' || delete_or_not == 'Y') {
-
-						goto start;
-
-					} else {
-
+					if (foods.size() == 1) {
 						// system("cls");
-						c "Your overall order is!\n";
 						display_order();
-						c "\nTotal is: " << get_total() << "\n";
-						payment_method(get_total());
+						c "\n\n";
 
-						exit(1);
+						do {
+							c "Do you want to delete your item? [y/n]: ";
+							if (!(cin >> delete_or_not) || (delete_or_not != 'y' && delete_or_not != 'n')) {
+								// Input is not a valid character or not 'y' or 'n'
+								cin.clear();  // Clear the error flag
+								cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+								cout << "\n\t\t=======================================================" << endl;
+								cout << "\t\t\tInvalid input. Please enter 'y' or 'n'." << endl;
+								cout << "\t\t=======================================================\n" << endl;
+							} else {
+								// Valid input, break out of the loop
+								break;
+							}
+						} while (true);
 
+						if (delete_or_not == 'y' || delete_or_not == 'Y') {
+
+							goto start;
+
+						} else {
+
+							// system("cls");
+							c "Your overall order is!\n";
+							display_order();
+							c "\nTotal is: " << get_total() << "\n";
+							payment_method(get_total());
+
+							exit(1);
+
+						}
+					} else {
+						no_order_in_lists();
 					}
 
 				} else if (quantity.size() > 1) {
@@ -517,50 +541,56 @@ public:
 
 					}
 
-					// cout << "quantity value: " << quantity.at(number_to_delete - 1) << "\n";
 					if (quantity.at(number_to_delete - 1) == 0) {
-						cout << "not enough q\n";
+						foods.erase(foods.begin() + (number_to_delete - 1));
+						price.erase(price.begin() + (number_to_delete - 1));
+						quantity.erase(quantity.begin() + (number_to_delete - 1));
 					}
-
 
 					cout << "\n\t\t=======================================" << endl;
 					c "\t\t\tQuantity is Decresed!\n";
 					cout << "\t\t=======================================\n" << endl;
 
-					// system("cls");
-					display_order();
-					c "\n\n";
-
-					do {
-						c "Do you want to delete your item? [y/n]: ";
-						if (!(cin >> delete_or_not) || (delete_or_not != 'y' && delete_or_not != 'n')) {
-							// Input is not a valid character or not 'y' or 'n'
-							cin.clear();  // Clear the error flag
-							cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
-							cout << "\n\t\t=======================================================" << endl;
-							cout << "\t\t\tInvalid input. Please enter 'y' or 'n'." << endl;
-							cout << "\t\t=======================================================\n" << endl;
-						} else {
-							// Valid input, break out of the loop
-							break;
-						}
-					} while (true);
-
-					if (delete_or_not == 'y' || delete_or_not == 'Y') {
-
-						goto start;
-
-					} else {
-
+					if (foods.size() == 1) {
 						// system("cls");
-						c "Your overall order is!\n";
 						display_order();
-						c "\nTotal is: " << get_total() << "\n";
-						payment_method(get_total());
+						c "\n\n";
 
-						exit(1);
+						do {
+							c "Do you want to delete your item? [y/n]: ";
+							if (!(cin >> delete_or_not) || (delete_or_not != 'y' && delete_or_not != 'n')) {
+								// Input is not a valid character or not 'y' or 'n'
+								cin.clear();  // Clear the error flag
+								cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+								cout << "\n\t\t=======================================================" << endl;
+								cout << "\t\t\tInvalid input. Please enter 'y' or 'n'." << endl;
+								cout << "\t\t=======================================================\n" << endl;
+							} else {
+								// Valid input, break out of the loop
+								break;
+							}
+						} while (true);
 
+						if (delete_or_not == 'y' || delete_or_not == 'Y') {
+
+							goto start;
+
+						} else {
+
+							// system("cls");
+							c "Your overall order is!\n";
+							display_order();
+							c "\nTotal is: " << get_total() << "\n";
+							payment_method(get_total());
+
+							exit(1);
+
+						}
+					} else {
+						no_order_in_lists();
 					}
+
+
 				}
 			}
 
@@ -598,7 +628,7 @@ public:
 			if (order_in_another == 'y' || order_in_another == 'y') {
 
 				ready = false;
-				chick_burgers();
+				show_chick_burgers_menu();
 				for_chick('c');
 
 			}
@@ -625,7 +655,7 @@ public:
 
 			if (order_in_another == 'y' || order_in_another == 'y') {
 
-				beef_burgers();
+				show_beef_burgers_menu();
 				for_beef('b');
 
 			}
@@ -818,8 +848,8 @@ public:
 		char picking;
 
 		// system("cls");
-		beef_burgers();
-		chick_burgers();
+		show_beef_burgers_menu();
+		show_chick_burgers_menu();
 		cout << "\n\t\t=======================================================" << endl;
 		c "\t\t\t    No more order, Please order.\n";
 		cout << "\t\t=======================================================\n" << endl;
@@ -853,8 +883,8 @@ int main() {
 
 	Burger_POS _burger; /// object created!
 
-	_burger.beef_burgers();
-	_burger.chick_burgers();
+	_burger.show_beef_burgers_menu();
+	_burger.show_chick_burgers_menu();
 
 	// c "Press B for Beef Bugrer, Press C for Chicken Burger: ";
 	// cin >> pick_menu;	
