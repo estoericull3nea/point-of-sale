@@ -155,19 +155,18 @@ public:
 
 			if (toupper(edit_or_not) == 'Y') {
 				cout << "\n1. Edit.\n";
-				cout << "2. Clear, Order again.\n";
-				cout << "3. Proceed.\n\n";
+				cout << "2. Cancel edit.\n\n";
 
 				int choice;
 
 				do {
 					cout << "Enter your choice: ";
-					if (!(cin >> choice) || choice < 0 || choice > 3) {
+					if (!(cin >> choice) || choice < 0 || choice > 2) {
 						// Input is not a valid character or not 'y' or 'n'
 						cin.clear();  // Clear the error flag
 						cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
 						cout << "\n\t\t===============================================================" << endl;
-						cout << "\t\t  Error message: Please enter a valid integer between 1 and 3." << endl;
+						cout << "\t\t  Error message: Please enter a valid integer between 1 and 2." << endl;
 						cout << "\t\t===============================================================\n" << endl;
 					} else {
 						// Valid input, break out of the loop
@@ -204,10 +203,6 @@ public:
 						cout << "Previous order is: " << beef_menu_init.at(picking_order - 1) << " and quantity is " << _quantity << "\n";
 
 						do {
-							cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
-
-
-
 							// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
 							cout << "\nB - Beef Burger\n";
 							cout << "C - Chicken Burger\n";
@@ -288,7 +283,8 @@ public:
 
 						goto start;
 					}
-
+				} else if(choice == 2) {
+					cout << "cancel edit\n";
 				}
 			}
 			// ====================================== end of edit order ==========================================================
