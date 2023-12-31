@@ -17,39 +17,61 @@ public:
 	int _quantity, age, money, temp_for_sum, payment;
 	char order_again;
 
-	// ============================== Constructor ==============================
-	Burger_POS() {
-		b = 'b';
-		ready = false;
-	}
-
 	// ============================== Initializing Vector ==============================
 	vector<string> foods;
 	vector<int> quantity;
 	vector<int> price;
 
+	vector<string> beef_menu_init;
+	vector<string> chick_menu_init;
+
+	// ============================== Constructor ==============================
+	Burger_POS() {
+		b = 'b';
+		ready = false;
+
+		beef_menu_init.push_back("Beef Burger");
+		beef_menu_init.push_back("Cheese Burger");
+		beef_menu_init.push_back("Beef Bacon");
+		beef_menu_init.push_back("Creamy Mushroom");
+		beef_menu_init.push_back("Hawaiian Burger");
+
+		chick_menu_init.push_back("Spicy Tandoori");
+		chick_menu_init.push_back("Spicy Buffalo");
+		chick_menu_init.push_back("BBQ Chicken");
+		chick_menu_init.push_back("Crispy Chicken");
+		chick_menu_init.push_back("Chicken Paradise");
+
+
+	}
+
+
 	// ============================== Show Burger Menu ==============================
 	void show_beef_burgers_menu() {
-		c "\n\n\t=================== Beef Burgers Menu ====================\n\n";
-		c "\n   \t\t\tLists\t\tPrice\n\n";
-		c "\t\t1. Beef Burger\t\t 120\n";
-		c "\t\t2. Cheese Burger\t 130\n";
-		c "\t\t3. Beef Bacon\t\t 140\n";
-		c "\t\t4. Creamy Mushroom\t 100\n";
-		c "\t\t5. Hawaiian Burger\t 110\n";
-		c "\n\n\t==========================================================\n\n";
+		c "\n\t=======================================================================================================================\n";
+		c "\n\n\t\t\t\t\t=================== Beef Burgers Menu ====================\n\n";
+		c "\n   \t\t\t\t\t\t\t\tLists\t\tPrice\n\n";
+		c "\t\t\t\t\t\t\t1. Beef Burger\t\t 120\n";
+		c "\t\t\t\t\t\t\t2. Cheese Burger\t 130\n";
+		c "\t\t\t\t\t\t\t3. Beef Bacon\t\t 140\n";
+		c "\t\t\t\t\t\t\t4. Creamy Mushroom\t 100\n";
+		c "\t\t\t\t\t\t\t5. Hawaiian Burger\t 110\n";
+		c "\n\n\t\t\t\t\t==========================================================\n\n";
+		c "\n\t=======================================================================================================================\n";
 	}
 
 	// ============================== Show Chicken Menu ==============================
 	void show_chick_burgers_menu() {
-		c "\n\n\t================ Chicken Burgers Menu ====================\n\n";
-		c "\n   \t\t\tLists\t\tPrice\n\n";
-		c "\t\t1. Spicy Tandoori\t 100\n";
-		c "\t\t2. Spicy Buffalo\t 100\n";
-		c "\t\t3. BBQ Chicken\t\t  99\n";
-		c "\t\t4. Crispy Chicken\t 160\n";
-		c "\t\t5. Chicken Paradise\t 190\n";
-		c "\n\n\t==========================================================\n\n";
+		c "\n\t=======================================================================================================================\n";
+		c "\n\n\t\t\t\t\t================ Chicken Burgers Menu ====================\n\n";
+		c "\n   \t\t\t\t\t\t\t\tLists\t\tPrice\n\n";
+		c "\t\t\t\t\t\t\t1. Spicy Tandoori\t 100\n";
+		c "\t\t\t\t\t\t\t2. Spicy Buffalo\t 100\n";
+		c "\t\t\t\t\t\t\t3. BBQ Chicken\t\t  99\n";
+		c "\t\t\t\t\t\t\t4. Crispy Chicken\t 160\n";
+		c "\t\t\t\t\t\t\t5. Chicken Paradise\t 190\n";
+		c "\n\n\t\t\t\t\t==========================================================\n\n";
+		c "\n\t=======================================================================================================================\n";
 	}
 
 	// ============================== User Selecting Menu ==============================
@@ -64,9 +86,6 @@ public:
 			// system("cls");
 			show_chick_burgers_menu();
 			for_chick(menu);
-		} else {
-			// Handle invalid input
-			cout << "Invalid menu choice." << endl;
 		}
 	}
 
@@ -93,9 +112,10 @@ public:
 				}
 			} while (true);
 
+			cout << "\n" << beef_menu_init.at(picking_order - 1) << " is selected!\n\n";
 
 			do {
-				c "How many: ";
+				cout << "How many " << beef_menu_init.at(picking_order - 1) << ": ";
 				if (!(cin >> _quantity) || _quantity < 1) {
 
 					cin.clear();  // Clear the error flag
@@ -109,6 +129,10 @@ public:
 					break;
 				}
 			} while (true);
+
+			cout << "\nOrder(s) made!\n\n";
+			cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n";
+			cout << "Quantity: " << _quantity <<"\n\n";
 
 			if (picking_order == 1) {
 
@@ -200,11 +224,10 @@ public:
 				}
 			} while (true);
 
-
-
+			cout << "\n" << chick_menu_init.at(picking_order - 1) << " is selected!\n\n";
 
 			do {
-				c "How many: ";
+				cout << "How many " << chick_menu_init.at(picking_order - 1) << ": ";
 				if (!(cin >> _quantity) || _quantity < 1) {
 
 					cin.clear();  // Clear the error flag
@@ -218,6 +241,10 @@ public:
 					break;
 				}
 			} while (true);
+
+			cout << "\nOrder(s) made!\n\n";
+			cout << "Order: " << chick_menu_init.at(picking_order - 1) << "\n";
+			cout << "Quantity: " << _quantity <<"\n\n";
 
 			if (picking_order == 1) {
 
@@ -854,8 +881,16 @@ public:
 		c "\t\t\t    No more order, Please order.\n";
 		cout << "\t\t=======================================================\n" << endl;
 		do {
-			cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
+			// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
+			cout << "B - Beef Burger\n";
+			cout << "C - Chicken Burger\n";
+			cout << "Q - Exit\n";
+			cout << "Enter your choice: ";
 			cin >> picking;
+
+			if (toupper(picking) == 'Q') {
+				exit(1);
+			}
 
 			// Clear the input buffer in case of invalid input
 			cin.clear();
@@ -865,6 +900,10 @@ public:
 			if (toupper(picking) == 'B' || toupper(picking) == 'C') {
 				break;  // Exit the loop if the input is valid
 			} else {
+
+				show_beef_burgers_menu();
+				show_chick_burgers_menu();
+
 				cout << "\n\t\t=======================================================" << endl;
 				cout << "\t\t\tError message: Please enter B or C." << endl;
 				cout << "\t\t=======================================================\n" << endl;
@@ -886,13 +925,17 @@ int main() {
 	_burger.show_beef_burgers_menu();
 	_burger.show_chick_burgers_menu();
 
-	// c "Press B for Beef Bugrer, Press C for Chicken Burger: ";
-	// cin >> pick_menu;	
-	// _burger.pick_what_menu(pick_menu);
-
 	do {
-		cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
+		// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
+		cout << "B - Beef Burger\n";
+		cout << "C - Chicken Burger\n";
+		cout << "Q - Exit\n";
+		cout << "Enter your choice: ";
 		cin >> pick_menu;
+
+		if (toupper(pick_menu) == 'Q') {
+			exit(1);
+		}
 
 		// Clear the input buffer in case of invalid input
 		cin.clear();
@@ -902,6 +945,10 @@ int main() {
 		if (toupper(pick_menu) == 'B' || toupper(pick_menu) == 'C') {
 			break;  // Exit the loop if the input is valid
 		} else {
+
+			_burger.show_beef_burgers_menu();
+			_burger.show_chick_burgers_menu();
+
 			cout << "\n\t\t=======================================================" << endl;
 			cout << "\t\t\tError message: Please enter B or C." << endl;
 			cout << "\t\t=======================================================\n" << endl;
