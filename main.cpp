@@ -195,17 +195,15 @@ public:
 					} while (true);
 
 					if (option == 1) {
-
 						show_beef_burgers_menu();
 						show_chick_burgers_menu();
-						// cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n"; 
 						char pick_menu;
-						cout << "Previous order is: " << beef_menu_init.at(picking_order - 1) << " and quantity is " << _quantity << "\n";
+						cout << "Previous order is: " << beef_menu_init.at(picking_order - 1) << " (beef menu) and quantity is " << _quantity << "\n";
 
 						do {
 							// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
-							cout << "\nB - Beef Burger\n";
-							cout << "C - Chicken Burger\n";
+							cout << "\nB - Beef Menu\n";
+							cout << "C - Chicken Menu\n";
 							cout << "Q - Exit\n\n";
 							cout << "Enter your choice: ";
 							cin >> pick_menu;
@@ -256,6 +254,38 @@ public:
 							cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n";
 							cout << "Quantity: " << _quantity << "\n\n";
 
+							if (picking_order == 1) {
+
+								foods.push_back("Beef Burger    ");
+								quantity.push_back(_quantity);
+								price.push_back(120);
+
+							} else if (picking_order == 2) {
+
+								foods.push_back("Cheese Burger  ");
+								quantity.push_back(_quantity);
+								price.push_back(130);
+
+							} else if (picking_order == 3) {
+
+								foods.push_back("Beef Bacon     ");
+								quantity.push_back(_quantity);
+								price.push_back(140);
+
+							} else if (picking_order == 4) {
+
+								foods.push_back("Creamy Mushroom");
+								quantity.push_back(_quantity);
+								price.push_back(100);
+
+							} else if (picking_order == 5) {
+
+								foods.push_back("Hawaiian Burger");
+								quantity.push_back(_quantity);
+								price.push_back(110);
+
+							}
+
 							goto start;
 						} else if (toupper(pick_menu) == 'C') {
 							do {
@@ -275,11 +305,45 @@ public:
 							} while (true);
 
 							cout << "\n" << chick_menu_init.at(picking_order - 1) << " is selected!\n\n";
+							cout << "test\n";
+
 							cout << "Order Edited\n";
 
 							cout << "\nOrder(s) made!\n\n";
 							cout << "Order: " << chick_menu_init.at(picking_order - 1) << "\n";
 							cout << "Quantity: " << _quantity << "\n\n";
+
+							if (picking_order == 1) {
+
+								foods.push_back("Spicy Tandoori  ");
+								quantity.push_back(_quantity);
+								price.push_back(100);
+
+							} else if (picking_order == 2) {
+
+								foods.push_back("Spicy Buffalo   ");
+								quantity.push_back(_quantity);
+								price.push_back(100);
+
+							} else if (picking_order == 3) {
+
+								foods.push_back("BBQ Chicken     ");
+								quantity.push_back(_quantity);
+								price.push_back(99);
+
+							} else if (picking_order == 4) {
+
+								foods.push_back("Crispy Chicken  ");
+								quantity.push_back(_quantity);
+								price.push_back(160);
+
+							} else if (picking_order == 5) {
+
+								foods.push_back("Chicken Paradise");
+								quantity.push_back(_quantity);
+								price.push_back(190);
+
+							}
 
 							goto start;
 						}
@@ -314,37 +378,7 @@ public:
 			}
 			// ====================================== end of edit order ==========================================================
 
-			if (picking_order == 1) {
 
-				foods.push_back("Beef Burger    ");
-				quantity.push_back(_quantity);
-				price.push_back(120);
-
-			} else if (picking_order == 2) {
-
-				foods.push_back("Cheese Burger  ");
-				quantity.push_back(_quantity);
-				price.push_back(130);
-
-			} else if (picking_order == 3) {
-
-				foods.push_back("Beef Bacon     ");
-				quantity.push_back(_quantity);
-				price.push_back(140);
-
-			} else if (picking_order == 4) {
-
-				foods.push_back("Creamy Mushroom");
-				quantity.push_back(_quantity);
-				price.push_back(100);
-
-			} else if (picking_order == 5) {
-
-				foods.push_back("Hawaiian Burger");
-				quantity.push_back(_quantity);
-				price.push_back(110);
-
-			}
 
 			do {
 				cout << "Do you want to order again? [y/n]: ";
@@ -492,12 +526,12 @@ public:
 						show_chick_burgers_menu();
 						// cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n"; 
 						char pick_menu;
-						cout << "Previous order is: " << chick_menu_init.at(picking_order - 1) << " and quantity is " << _quantity << "\n";
+						cout << "Previous order is: " << chick_menu_init.at(picking_order - 1) << " (chicken menu) and quantity is " << _quantity << "\n";
 
 						do {
 							// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
-							cout << "\nB - Beef Burger\n";
-							cout << "C - Chicken Burger\n";
+							cout << "\nB - Beef Menu\n";
+							cout << "C - Chicken Menu\n";
 							cout << "Q - Exit\n\n";
 							cout << "Enter your choice: ";
 							cin >> pick_menu;
@@ -573,6 +607,38 @@ public:
 							cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n";
 							cout << "Quantity: " << _quantity << "\n\n";
 
+							if (picking_order == 1) {
+
+								foods.push_back("Beef Burger    ");
+								quantity.push_back(_quantity);
+								price.push_back(120);
+
+							} else if (picking_order == 2) {
+
+								foods.push_back("Cheese Burger  ");
+								quantity.push_back(_quantity);
+								price.push_back(130);
+
+							} else if (picking_order == 3) {
+
+								foods.push_back("Beef Bacon     ");
+								quantity.push_back(_quantity);
+								price.push_back(140);
+
+							} else if (picking_order == 4) {
+
+								foods.push_back("Creamy Mushroom");
+								quantity.push_back(_quantity);
+								price.push_back(100);
+
+							} else if (picking_order == 5) {
+
+								foods.push_back("Hawaiian Burger");
+								quantity.push_back(_quantity);
+								price.push_back(110);
+
+							}
+
 							goto start;
 						}
 					} else if (option == 2) {
@@ -597,6 +663,38 @@ public:
 						cout << "\nOrder(s) made!\n\n";
 						cout << "Order: " << chick_menu_init.at(picking_order - 1) << "\n";
 						cout << "Quantity: " << _quantity << "\n\n";
+
+						if (picking_order == 1) {
+
+							foods.push_back("Spicy Tandoori  ");
+							quantity.push_back(_quantity);
+							price.push_back(100);
+
+						} else if (picking_order == 2) {
+
+							foods.push_back("Spicy Buffalo   ");
+							quantity.push_back(_quantity);
+							price.push_back(100);
+
+						} else if (picking_order == 3) {
+
+							foods.push_back("BBQ Chicken     ");
+							quantity.push_back(_quantity);
+							price.push_back(99);
+
+						} else if (picking_order == 4) {
+
+							foods.push_back("Crispy Chicken  ");
+							quantity.push_back(_quantity);
+							price.push_back(160);
+
+						} else if (picking_order == 5) {
+
+							foods.push_back("Chicken Paradise");
+							quantity.push_back(_quantity);
+							price.push_back(190);
+
+						}
 
 						goto start;
 					}
@@ -1245,8 +1343,8 @@ public:
 		cout << "\t\t=======================================================\n" << endl;
 		do {
 			// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
-			cout << "\nB - Beef Burger\n";
-			cout << "C - Chicken Burger\n";
+			cout << "\nB - Beef Menu\n";
+			cout << "C - Chicken Menu\n";
 			cout << "Q - Exit\n\n";
 			cout << "Enter your choice: ";
 			cin >> picking;
@@ -1290,8 +1388,8 @@ int main() {
 
 	do {
 		// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
-		cout << "\nB - Beef Burger\n";
-		cout << "C - Chicken Burger\n";
+		cout << "\nB - Beef Menu\n";
+		cout << "C - Chicken Menu\n";
 		cout << "Q - Exit\n\n";
 		cout << "Enter your choice: ";
 		cin >> pick_menu;
