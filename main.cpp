@@ -132,9 +132,79 @@ public:
 
 			cout << "\nOrder(s) made!\n\n";
 			cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n";
-			cout << "Quantity: " << _quantity <<"\n\n";
+			cout << "Quantity: " << _quantity << "\n\n";
 
-			// code here to verify the and edit the order
+
+			// ====================================== edit order ==========================================================
+			char edit_or_not;
+			do {
+				cout << "Do you want to edit your order? [y/n]: ";
+				if (!(cin >> edit_or_not) || (toupper(edit_or_not) != 'Y' && toupper(edit_or_not) != 'N')) {
+					// Input is not a valid character or not 'y' or 'n'
+					cin.clear();  // Clear the error flag
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+					cout << "\n\t\t=======================================================" << endl;
+					cout << "\t\t\tInvalid input. Please enter 'y' or 'n'." << endl;
+					cout << "\t\t=======================================================\n" << endl;
+				} else {
+					// Valid input, break out of the loop
+					break;
+				}
+			} while (true);
+
+			if (toupper(edit_or_not) == 'Y') {
+				cout << "\n1. Edit.\n";
+				cout << "2. Clear, Order again.\n";
+				cout << "3. Proceed.\n\n";
+
+				int choice;
+
+				do {
+					cout << "Enter your choice: ";
+					if (!(cin >> choice) || choice < 0 || choice > 3) {
+						// Input is not a valid character or not 'y' or 'n'
+						cin.clear();  // Clear the error flag
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+						cout << "\n\t\t===============================================================" << endl;
+						cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+						cout << "\t\t===============================================================\n" << endl;
+					} else {
+						// Valid input, break out of the loop
+						break;
+					}
+				} while (true);
+
+				if (choice == 1) {
+					cout << "1. " << "\nOrder.\n";
+					cout << "2. " << "Quantity.\n\n";
+
+					int option;
+					do {
+						cout << "Enter your option to edit: ";
+						if (!(cin >> option) || option < 1 || option > 2) {
+							// Input is not a valid character or not 'y' or 'n'
+							cin.clear();  // Clear the error flag
+							cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else {
+							// Valid input, break out of the loop
+							break;
+						}
+					} while (true);
+
+					if(option == 1) {
+						cout << "option 1\n";
+					}
+
+				} else if (choice == 2) {
+					cout << "2\n";
+				} else if (choice == 3) {
+					cout << "3\n";
+				}
+			}
+			// ====================================== end of edit order ==========================================================
 
 			if (picking_order == 1) {
 
@@ -220,6 +290,7 @@ public:
 					cout << "\n\t\t===============================================================" << endl;
 					cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
 					cout << "\t\t===============================================================\n" << endl;
+
 				} else {
 					// Valid input, break out of the loop
 					break;
@@ -246,7 +317,7 @@ public:
 
 			cout << "\nOrder(s) made!\n\n";
 			cout << "Order: " << chick_menu_init.at(picking_order - 1) << "\n";
-			cout << "Quantity: " << _quantity <<"\n\n";
+			cout << "Quantity: " << _quantity << "\n\n";
 
 			if (picking_order == 1) {
 
@@ -694,12 +765,14 @@ public:
 	// ============================== Show All Orders ==============================
 	void display_order() {
 
-		c "\t\t==================================\n\t\t\tYour Order(s) Are\n\t\t==================================";
-
-		c"\n\n    List(s)\t\t   Quantity\t\t    Price\t\tSubtotal\n\n";
-
-		for (int i = 0;i < foods.size();i++) {
-			c "  " << i + 1 << ". " << foods.at(i) << "\t      " << quantity.at(i) << "\t\t\t     " << price.at(i) << "\t\t  " << (price.at(i) * quantity.at(i)) << "\n";
+		if (foods.size() > 0) {
+			c "\t\t==================================\n\t\t\tYour Order(s) Are\n\t\t==================================";
+			c"\n\n    List(s)\t\t   Quantity\t\t    Price\t\tSubtotal\n\n";
+			for (int i = 0;i < foods.size();i++) {
+				c "  " << i + 1 << ". " << foods.at(i) << "\t      " << quantity.at(i) << "\t\t\t     " << price.at(i) << "\t\t  " << (price.at(i) * quantity.at(i)) << "\n";
+			}
+		} else {
+			no_order_in_lists();
 		}
 	}
 
@@ -884,9 +957,9 @@ public:
 		cout << "\t\t=======================================================\n" << endl;
 		do {
 			// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
-			cout << "B - Beef Burger\n";
+			cout << "\nB - Beef Burger\n";
 			cout << "C - Chicken Burger\n";
-			cout << "Q - Exit\n";
+			cout << "Q - Exit\n\n";
 			cout << "Enter your choice: ";
 			cin >> picking;
 
@@ -929,9 +1002,9 @@ int main() {
 
 	do {
 		// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
-		cout << "B - Beef Burger\n";
+		cout << "\nB - Beef Burger\n";
 		cout << "C - Chicken Burger\n";
-		cout << "Q - Exit\n";
+		cout << "Q - Exit\n\n";
 		cout << "Enter your choice: ";
 		cin >> pick_menu;
 
