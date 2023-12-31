@@ -166,7 +166,7 @@ public:
 						cin.clear();  // Clear the error flag
 						cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
 						cout << "\n\t\t===============================================================" << endl;
-						cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+						cout << "\t\t  Error message: Please enter a valid integer between 1 and 3." << endl;
 						cout << "\t\t===============================================================\n" << endl;
 					} else {
 						// Valid input, break out of the loop
@@ -175,18 +175,18 @@ public:
 				} while (true);
 
 				if (choice == 1) {
-					cout << "1. " << "\nOrder.\n";
+					cout << "\n1. " << "Order.\n";
 					cout << "2. " << "Quantity.\n\n";
 
 					int option;
 					do {
-						cout << "Enter your option to edit: ";
+						cout << "What do you edit: ";
 						if (!(cin >> option) || option < 1 || option > 2) {
 							// Input is not a valid character or not 'y' or 'n'
 							cin.clear();  // Clear the error flag
 							cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
 							cout << "\n\t\t===============================================================" << endl;
-							cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+							cout << "\t\t  Error message: Please enter a valid integer between 1 and 2." << endl;
 							cout << "\t\t===============================================================\n" << endl;
 						} else {
 							// Valid input, break out of the loop
@@ -194,14 +194,65 @@ public:
 						}
 					} while (true);
 
-					if(option == 1) {
-						cout << "option 1\n";
+					if (option == 1) {
+						// edit my order
+
+						show_beef_burgers_menu();
+						show_chick_burgers_menu();
+						char pick_menu;
+
+						do {
+							// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
+							cout << "\nB - Beef Burger\n";
+							cout << "C - Chicken Burger\n";
+							cout << "Q - Exit\n\n";
+							cout << "Enter your choice: ";
+							cin >> pick_menu;
+
+							if (toupper(pick_menu) == 'Q') {
+								exit(1);
+							}
+
+							// Clear the input buffer in case of invalid input
+							cin.clear();
+							cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+							// Check if the input is valid
+							if (toupper(pick_menu) == 'B' || toupper(pick_menu) == 'C') {
+								break;  // Exit the loop if the input is valid
+							} else {
+
+								show_beef_burgers_menu();
+								show_chick_burgers_menu();
+
+								cout << "\n\t\t=======================================================" << endl;
+								cout << "\t\t\tError message: Please enter B or C." << endl;
+								cout << "\t\t=======================================================\n" << endl;
+							}
+						} while (true);
+						// after validation
+						if (toupper(pick_menu) == 'B') {
+							do {
+								show_beef_burgers_menu();
+								cout << "Enter your order [1-5]: ";
+								if (!(cin >> picking_order) || picking_order < 1 || picking_order > 5) {
+									// Input is not a valid integer or not in the range [1, 5]
+									cin.clear();  // Clear the error flag
+									cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+									cout << "\n\t\t===============================================================" << endl;
+									cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+									cout << "\t\t===============================================================\n" << endl;
+								} else {
+									// Valid input, break out of the loop
+									break;
+								}
+							} while (true);
+
+							cout << "\n" << beef_menu_init.at(picking_order - 1) << " is selected!\n\n";
+							cout << "done\n";
+						}
 					}
 
-				} else if (choice == 2) {
-					cout << "2\n";
-				} else if (choice == 3) {
-					cout << "3\n";
 				}
 			}
 			// ====================================== end of edit order ==========================================================
