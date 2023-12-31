@@ -195,7 +195,6 @@ public:
 					} while (true);
 
 					if (option == 1) {
-						// edit my order
 
 						show_beef_burgers_menu();
 						show_chick_burgers_menu();
@@ -249,8 +248,10 @@ public:
 							} while (true);
 
 							cout << "\n" << beef_menu_init.at(picking_order - 1) << " is selected!\n\n";
-							cout << "done\n";
+							cout << "Order Edited\n";
 						}
+					} else if(option == 2) {
+
 					}
 
 				}
