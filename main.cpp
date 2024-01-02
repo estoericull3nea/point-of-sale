@@ -375,6 +375,38 @@ public:
 				} else if (choice == 2) {
 					cout << "Cancelled.\n";
 				}
+			} else {
+				if (picking_order == 1) {
+
+					foods.push_back("Beef Burger    ");
+					quantity.push_back(_quantity);
+					price.push_back(120);
+
+				} else if (picking_order == 2) {
+
+					foods.push_back("Cheese Burger  ");
+					quantity.push_back(_quantity);
+					price.push_back(130);
+
+				} else if (picking_order == 3) {
+
+					foods.push_back("Beef Bacon     ");
+					quantity.push_back(_quantity);
+					price.push_back(140);
+
+				} else if (picking_order == 4) {
+
+					foods.push_back("Creamy Mushroom");
+					quantity.push_back(_quantity);
+					price.push_back(100);
+
+				} else if (picking_order == 5) {
+
+					foods.push_back("Hawaiian Burger");
+					quantity.push_back(_quantity);
+					price.push_back(110);
+
+				}
 			}
 			// ====================================== end of edit order ==========================================================
 
@@ -701,6 +733,38 @@ public:
 				} else if (choice == 2) {
 					cout << "Cancelled.\n";
 				}
+			} else {
+				if (picking_order == 1) {
+
+					foods.push_back("Spicy Tandoori  ");
+					quantity.push_back(_quantity);
+					price.push_back(100);
+
+				} else if (picking_order == 2) {
+
+					foods.push_back("Spicy Buffalo   ");
+					quantity.push_back(_quantity);
+					price.push_back(100);
+
+				} else if (picking_order == 3) {
+
+					foods.push_back("BBQ Chicken     ");
+					quantity.push_back(_quantity);
+					price.push_back(99);
+
+				} else if (picking_order == 4) {
+
+					foods.push_back("Crispy Chicken  ");
+					quantity.push_back(_quantity);
+					price.push_back(160);
+
+				} else if (picking_order == 5) {
+
+					foods.push_back("Chicken Paradise");
+					quantity.push_back(_quantity);
+					price.push_back(190);
+
+				}
 			}
 			// ====================================== end of edit order ==========================================================
 
@@ -849,16 +913,16 @@ public:
 					}
 				} while (true);
 
-				if (foods.size() == 1) {
+				// if (foods.size() == 1) {
 
-					foods.clear();
-					quantity.clear();
-					price.clear();
-					no_order_in_lists();
+				// 	foods.clear();
+				// 	quantity.clear();
+				// 	price.clear();
+				// 	no_order_in_lists();
 
-					exit(1);
+				// 	exit(1);
 
-				}
+				// }
 
 				if (toupper(sure_or_not) == 'Y') {
 					foods.erase(foods.begin() + number_to_delete - 1);
@@ -1373,7 +1437,6 @@ public:
 
 		// Now, you can use the valid input
 		pick_what_menu(toupper(picking));  // Convert to uppercase for consistency
-
 	}
 };
 
