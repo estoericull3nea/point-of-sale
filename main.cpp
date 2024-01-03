@@ -84,6 +84,7 @@ public:
 			for_beef(menu);
 		} else if (upperMenu == 'C') {
 			// system("cls");
+			cout << "test\n";
 			show_chick_burgers_menu();
 			for_chick(menu);
 		}
@@ -133,6 +134,7 @@ public:
 			cout << "\nOrder(s) made!\n\n";
 			cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n";
 			cout << "Quantity: " << _quantity << "\n\n";
+
 
 
 			// ====================================== edit order ==========================================================
@@ -205,7 +207,8 @@ public:
 							cout << "\nB - Beef Menu\n";
 							cout << "C - Chicken Menu\n";
 							cout << "Q - Exit\n\n";
-							cout << "Enter your choice: ";
+							cout << "Please select valid letter: ";
+
 							cin >> pick_menu;
 
 							if (toupper(pick_menu) == 'Q') {
@@ -455,6 +458,7 @@ public:
 		while (order_again == 'y' || order_again == 'Y') {
 
 			do {
+				cout << "test\n";
 				cout << "Enter your order [1-5]: ";
 				if (!(cin >> picking_order) || picking_order < 1 || picking_order > 5) {
 
@@ -471,7 +475,9 @@ public:
 				}
 			} while (true);
 
+			cout << "test\n";
 			cout << "\n" << chick_menu_init.at(picking_order - 1) << " is selected!\n\n";
+			cout << "test\n";
 
 			do {
 				cout << "How many " << chick_menu_init.at(picking_order - 1) << ": ";
@@ -565,7 +571,7 @@ public:
 							cout << "\nB - Beef Menu\n";
 							cout << "C - Chicken Menu\n";
 							cout << "Q - Exit\n\n";
-							cout << "Enter your choice: ";
+							cout << "Please select valid letter: ";
 							cin >> pick_menu;
 
 							if (toupper(pick_menu) == 'Q') {
@@ -614,7 +620,38 @@ public:
 							cout << "Order: " << chick_menu_init.at(picking_order - 1) << "\n";
 							cout << "Quantity: " << _quantity << "\n\n";
 
-							goto start;
+							if (picking_order == 1) {
+
+								foods.push_back("Spicy Tandoori  ");
+								quantity.push_back(_quantity);
+								price.push_back(100);
+
+							} else if (picking_order == 2) {
+
+								foods.push_back("Spicy Buffalo   ");
+								quantity.push_back(_quantity);
+								price.push_back(100);
+
+							} else if (picking_order == 3) {
+
+								foods.push_back("BBQ Chicken     ");
+								quantity.push_back(_quantity);
+								price.push_back(99);
+
+							} else if (picking_order == 4) {
+
+								foods.push_back("Crispy Chicken  ");
+								quantity.push_back(_quantity);
+								price.push_back(160);
+
+							} else if (picking_order == 5) {
+
+								foods.push_back("Chicken Paradise");
+								quantity.push_back(_quantity);
+								price.push_back(190);
+
+							}
+
 						} else if (toupper(pick_menu) == 'B') {
 							do {
 								show_beef_burgers_menu();
@@ -671,7 +708,6 @@ public:
 
 							}
 
-							goto start;
 						}
 					} else if (option == 2) {
 						cout << "Previous quantity of " << chick_menu_init.at(picking_order - 1) << " is " << _quantity << "\n";
@@ -695,38 +731,6 @@ public:
 						cout << "\nOrder(s) made!\n\n";
 						cout << "Order: " << chick_menu_init.at(picking_order - 1) << "\n";
 						cout << "Quantity: " << _quantity << "\n\n";
-
-						if (picking_order == 1) {
-
-							foods.push_back("Spicy Tandoori  ");
-							quantity.push_back(_quantity);
-							price.push_back(100);
-
-						} else if (picking_order == 2) {
-
-							foods.push_back("Spicy Buffalo   ");
-							quantity.push_back(_quantity);
-							price.push_back(100);
-
-						} else if (picking_order == 3) {
-
-							foods.push_back("BBQ Chicken     ");
-							quantity.push_back(_quantity);
-							price.push_back(99);
-
-						} else if (picking_order == 4) {
-
-							foods.push_back("Crispy Chicken  ");
-							quantity.push_back(_quantity);
-							price.push_back(160);
-
-						} else if (picking_order == 5) {
-
-							foods.push_back("Chicken Paradise");
-							quantity.push_back(_quantity);
-							price.push_back(190);
-
-						}
 
 						goto start;
 					}
@@ -768,39 +772,6 @@ public:
 			}
 			// ====================================== end of edit order ==========================================================
 
-
-			if (picking_order == 1) {
-
-				foods.push_back("Spicy Tandoori  ");
-				quantity.push_back(_quantity);
-				price.push_back(100);
-
-			} else if (picking_order == 2) {
-
-				foods.push_back("Spicy Buffalo   ");
-				quantity.push_back(_quantity);
-				price.push_back(100);
-
-			} else if (picking_order == 3) {
-
-				foods.push_back("BBQ Chicken     ");
-				quantity.push_back(_quantity);
-				price.push_back(99);
-
-			} else if (picking_order == 4) {
-
-				foods.push_back("Crispy Chicken  ");
-				quantity.push_back(_quantity);
-				price.push_back(160);
-
-			} else if (picking_order == 5) {
-
-				foods.push_back("Chicken Paradise");
-				quantity.push_back(_quantity);
-				price.push_back(190);
-
-			}
-
 			do {
 				cout << "Do you want to order again? [y/n]: ";
 				if (!(cin >> order_again) || (order_again != 'y' && order_again != 'n')) {
@@ -840,6 +811,7 @@ public:
 		char delete_or_not, r_or_d;
 		int number_to_delete;
 
+		// ask do you want to delete your item?
 		do {
 			c "Do you want to delete your item? [y/n]: ";
 			if (!(cin >> delete_or_not) || (delete_or_not != 'y' && delete_or_not != 'n')) {
@@ -856,12 +828,12 @@ public:
 		} while (true);
 		// system("cls");
 
+		// if want to delete
 		if (delete_or_not == 'y' || delete_or_not == 'Y') { // y
-
 		start:
-
 			display_order();
 
+			// ask enter number do you want to delete
 			do {
 				cout << "\nEnter number do you want to delete: ";
 				if (!(cin >> number_to_delete) || number_to_delete <= 0 || number_to_delete > foods.size()) {
@@ -880,6 +852,7 @@ public:
 
 			c "\n" << foods.at(number_to_delete - 1) << " is selected!\n";
 
+			// ask Press R to remove Item, Press D to decrease the quantity:
 			do {
 				cout << "\nPress R to remove Item, Press D to decrease the quantity: ";
 				if (!(cin >> r_or_d) || (toupper(r_or_d) != 'R' && toupper(r_or_d) != 'D')) {
@@ -895,9 +868,11 @@ public:
 				}
 			} while (true);
 
+			// if remove item
 			if (r_or_d == 'r' || r_or_d == 'R') {
 
 				char sure_or_not;
+				// ask "Are you sure? [y/n]: ";
 				do {
 					c "Are you sure? [y/n]: ";
 					if (!(cin >> sure_or_not) || (toupper(sure_or_not) != 'Y' && toupper(sure_or_not) != 'N')) {
@@ -913,21 +888,19 @@ public:
 					}
 				} while (true);
 
-				// if (foods.size() == 1) {
-
-				// 	foods.clear();
-				// 	quantity.clear();
-				// 	price.clear();
-				// 	no_order_in_lists();
-
-				// 	exit(1);
-
-				// }
-
+				// if yes
 				if (toupper(sure_or_not) == 'Y') {
+
+					// cout << foods.at(number_to_delete - 1) << " is deleting\n";
+					// cout << quantity.at(number_to_delete - 1) << " is deleting\n";
+					// cout << price.at(number_to_delete - 1) << " is deleting\n";
+
+					// erasing index of foods, quantity, and price
 					foods.erase(foods.begin() + number_to_delete - 1);
 					quantity.erase(quantity.begin() + number_to_delete - 1);
 					price.erase(price.begin() + number_to_delete - 1);
+
+
 
 					// system("cls");
 					cout << "\n\t\t=================================" << endl;
@@ -1410,7 +1383,7 @@ public:
 			cout << "\nB - Beef Menu\n";
 			cout << "C - Chicken Menu\n";
 			cout << "Q - Exit\n\n";
-			cout << "Enter your choice: ";
+			cout << "Please select valid letter: ";
 			cin >> picking;
 
 			if (toupper(picking) == 'Q') {
@@ -1451,10 +1424,11 @@ int main() {
 
 	do {
 		// cout << "Press B for Beef Burger, Press C for Chicken Burger: ";
+		cout << "test\n";
 		cout << "\nB - Beef Menu\n";
 		cout << "C - Chicken Menu\n";
 		cout << "Q - Exit\n\n";
-		cout << "Enter your choice: ";
+		cout << "Please select valid letter: ";
 		cin >> pick_menu;
 
 		if (toupper(pick_menu) == 'Q') {
