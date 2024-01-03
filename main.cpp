@@ -1130,7 +1130,7 @@ public:
 					}
 				} while (true);
 				edit_order_by_index(index);
-			}
+			} 
 
 		} else {
 			no_order_in_lists();
@@ -1254,7 +1254,6 @@ public:
 					break;
 				}
 			} while (true);
-			// code here
 			quantity.at(index) = new_quantity;
 			cout << "\nQuantity Edited.\n";
 			display_order();
