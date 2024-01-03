@@ -455,7 +455,6 @@ public:
 				}
 			} while (true);
 
-
 			cout << "\n" << chick_menu_init.at(picking_order - 1) << " is selected!\n\n";
 
 
