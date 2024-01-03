@@ -415,6 +415,7 @@ public:
 				order_again = 'n';
 				order_in_another_burger();
 				display_order();
+				ask_to_edit_order();
 				c "\nOverall total: " << get_total() << "\n";
 				get_total();
 				age_comp();
@@ -760,6 +761,7 @@ public:
 				order_again = 'n';
 				order_in_another_burger();
 				display_order();
+				ask_to_edit_order();
 				c "\nOverall total: " << get_total() << "\n";
 				get_total();
 				age_comp();
@@ -790,6 +792,7 @@ public:
 
 		if (delete_or_not == 'y' || delete_or_not == 'Y') {
 		start:
+			// bug here
 			display_order();
 			do {
 				cout << "\nEnter number do you want to delete: ";
@@ -1087,51 +1090,50 @@ public:
 		}
 	}
 
-	void display_order() {
-
+	void ask_to_edit_order() {
 		char edit_or_not;
 		int index;
 
+		do {
+			cout << "\nDo you want to edit your order? [y/n]: ";
+			if (!(cin >> edit_or_not) || (toupper(edit_or_not) != 'Y' && toupper(edit_or_not) != 'N')) {
+
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "\n\t\t=======================================================" << endl;
+				cout << "\t\t\tInvalid input. Please enter 'y' or 'n'." << endl;
+				cout << "\t\t=======================================================\n" << endl;
+			} else {
+				break;
+			}
+		} while (true);
+
+		if (toupper(edit_or_not) == 'Y') {
+			do {
+			display_order();
+				cout << "Enter number to edit: ";
+				if (!(cin >> index) || index < 0 || index > foods.size()) {
+
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "\n\t\t=======================================================" << endl;
+					cout << "\t\t\tInvalid input. Please enter integer only" << endl;
+					cout << "\t\t=======================================================\n" << endl;
+				} else {
+					break;
+				}
+			} while (true);
+			edit_order_by_index(index);
+		}
+	}
+
+	void display_order() {
 		if (foods.size() > 0) {
 			c "\t\t==================================\n\t\t\tYour Order(s) Are\n\t\t==================================";
 			c"\n\n    List(s)\t\t   Quantity\t\t    Price\t\tSubtotal\n\n";
 			for (int i = 0;i < foods.size();i++) {
 				c "  " << i + 1 << ". " << foods.at(i) << "\t      " << quantity.at(i) << "\t\t\t     " << price.at(i) << "\t\t  " << (price.at(i) * quantity.at(i)) << "\n";
 			}
-
-			do {
-				cout << "\nDo you want to edit your order? [y/n]: ";
-				if (!(cin >> edit_or_not) || (toupper(edit_or_not) != 'Y' && toupper(edit_or_not) != 'N')) {
-
-					cin.clear();
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-					cout << "\n\t\t=======================================================" << endl;
-					cout << "\t\t\tInvalid input. Please enter 'y' or 'n'." << endl;
-					cout << "\t\t=======================================================\n" << endl;
-				} else {
-
-					break;
-				}
-			} while (true);
-
-			if (toupper(edit_or_not) == 'Y') {
-				do {
-					cout << "Enter number to edit: ";
-					if (!(cin >> index) || index < 0 || index > foods.size()) {
-
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						cout << "\n\t\t=======================================================" << endl;
-						cout << "\t\t\tInvalid input. Please enter integer only" << endl;
-						cout << "\t\t=======================================================\n" << endl;
-					} else {
-
-						break;
-					}
-				} while (true);
-				edit_order_by_index(index);
-			} 
-
 		} else {
 			no_order_in_lists();
 		}
