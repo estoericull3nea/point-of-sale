@@ -6,6 +6,7 @@
 #include <chrono>
 #include <iomanip>
 #include <sstream>
+#include <thread>
 #define c cout <<
 using namespace std;
 
@@ -1623,11 +1624,12 @@ public:
 		pick_what_menu(toupper(picking));
 	}
 
-	string get_current_date_and_time() {
+
+	std::string get_current_date_and_time() {
 		// Get the current time
-		auto currentTime = chrono::system_clock::now();
-		time_t time = chrono::system_clock::to_time_t(currentTime);
-		tm* timeInfo = localtime(&time);
+		auto currentTime = std::chrono::system_clock::now();
+		std::time_t time = std::chrono::system_clock::to_time_t(currentTime);
+		std::tm* timeInfo = std::localtime(&time);
 
 		// Convert the hour to 12-hour format
 		int hour12 = timeInfo->tm_hour % 12;
@@ -1639,10 +1641,12 @@ public:
 		const char* ampm = (timeInfo->tm_hour < 12) ? "AM" : "PM";
 
 		// Create a stringstream to format the date and time
-		stringstream resultStream;
+		std::stringstream resultStream;
 		resultStream << (timeInfo->tm_year + 1900) << "-"
-			<< (timeInfo->tm_mon + 1) << "-" << timeInfo->tm_mday << " "
-			<< hour12 << ":" << timeInfo->tm_min << " " << ampm;
+			<< std::setfill('0') << std::setw(2) << (timeInfo->tm_mon + 1) << "-"
+			<< std::setfill('0') << std::setw(2) << timeInfo->tm_mday << " "
+			<< std::setfill('0') << std::setw(2) << hour12 << ":"
+			<< std::setfill('0') << std::setw(2) << timeInfo->tm_min << " " << ampm;
 
 		// Return the formatted date and time as a string
 		return resultStream.str();
@@ -1655,13 +1659,8 @@ public:
 
 int main() {
 	char pick_menu;
-
 	Burger_POS _burger;
 
-	string currentDateTime = _burger.get_current_date_and_time();
-	// cout << currentDateTime << endl;
-
-	exit(1);
 
 	_burger.show_beef_burgers_menu();
 	_burger.show_chick_burgers_menu();
