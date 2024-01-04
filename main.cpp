@@ -1,7 +1,11 @@
-#include<iostream>
-#include<string>
-#include<vector>
+#include <iostream>
+#include <string>
+#include <vector>
 #include <limits>
+#include <ctime>
+#include <chrono>
+#include <iomanip>
+#include <sstream>
 #define c cout <<
 using namespace std;
 
@@ -24,6 +28,9 @@ public:
 	// vector default
 	vector<string> beef_menu_init;
 	vector<string> chick_menu_init;
+
+	// for audit
+	vector<string> date_time;
 
 	// constructor
 	Burger_POS() {
@@ -1615,12 +1622,46 @@ public:
 
 		pick_what_menu(toupper(picking));
 	}
+
+	string get_current_date_and_time() {
+		// Get the current time
+		auto currentTime = chrono::system_clock::now();
+		time_t time = chrono::system_clock::to_time_t(currentTime);
+		tm* timeInfo = localtime(&time);
+
+		// Convert the hour to 12-hour format
+		int hour12 = timeInfo->tm_hour % 12;
+		if (hour12 == 0) {
+			hour12 = 12; // Set 12 for midnight and noon
+		}
+
+		// Determine whether it's AM or PM
+		const char* ampm = (timeInfo->tm_hour < 12) ? "AM" : "PM";
+
+		// Create a stringstream to format the date and time
+		stringstream resultStream;
+		resultStream << (timeInfo->tm_year + 1900) << "-"
+			<< (timeInfo->tm_mon + 1) << "-" << timeInfo->tm_mday << " "
+			<< hour12 << ":" << timeInfo->tm_min << " " << ampm;
+
+		// Return the formatted date and time as a string
+		return resultStream.str();
+	}
+
+	void view_history() {
+
+	}
 };
 
 int main() {
 	char pick_menu;
 
 	Burger_POS _burger;
+
+	string currentDateTime = _burger.get_current_date_and_time();
+	// cout << currentDateTime << endl;
+
+	exit(1);
 
 	_burger.show_beef_burgers_menu();
 	_burger.show_chick_burgers_menu();
