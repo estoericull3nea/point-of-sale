@@ -9,19 +9,23 @@ class Burger_POS {
 
 public:
 
+	// variables
 	int picking_order;
 	char b;
 	bool ready;
 	int _quantity, age, money, temp_for_sum, payment;
 	char order_again;
 
+	// vector init
 	vector<string> foods;
 	vector<int> quantity;
 	vector<int> price;
 
+	// vector default
 	vector<string> beef_menu_init;
 	vector<string> chick_menu_init;
 
+	// constructor
 	Burger_POS() {
 		b = 'b';
 		ready = false;
@@ -39,6 +43,7 @@ public:
 		chick_menu_init.push_back("Chicken Paradise");
 	}
 
+	// showing beef burgers menu
 	void show_beef_burgers_menu() {
 		c "\n\t=======================================================================================================================\n";
 		c "\n\n\t\t\t\t\t=================== Beef Burgers Menu ====================\n\n";
@@ -52,6 +57,7 @@ public:
 		c "\n\t=======================================================================================================================\n";
 	}
 
+	// showing chicken burgers menu
 	void show_chick_burgers_menu() {
 		c "\n\t=======================================================================================================================\n";
 		c "\n\n\t\t\t\t\t================ Chicken Burgers Menu ====================\n\n";
@@ -65,6 +71,7 @@ public:
 		c "\n\t=======================================================================================================================\n";
 	}
 
+	// pick what menu
 	void pick_what_menu(char menu) {
 		if (toupper(menu) == 'B') {
 			show_beef_burgers_menu();
@@ -75,6 +82,7 @@ public:
 		}
 	}
 
+	// if beef is selected
 	void for_beef() {
 
 		ready = true;
@@ -84,11 +92,19 @@ public:
 
 			do {
 				cout << "Enter your order [1-5]: ";
-				if (!(cin >> picking_order) || picking_order < 1 || picking_order > 5) {
+				if (!(cin >> picking_order)) {
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					cout << "\n\t\t===============================================================" << endl;
-					cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+					cout << "\t\t  Invalid Input: Please input integer only." << endl;
+					cout << "\t\t===============================================================\n" << endl;
+				} else if (picking_order < 1) {
+					cout << "\n\t\t===============================================================" << endl;
+					cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+					cout << "\t\t===============================================================\n" << endl;
+				} else if (picking_order > 5) {
+					cout << "\n\t\t===============================================================" << endl;
+					cout << "\t\t  Invalid Input: Please input between 1 and 5." << endl;
 					cout << "\t\t===============================================================\n" << endl;
 				} else {
 					break;
@@ -99,16 +115,18 @@ public:
 
 			do {
 				cout << "How many " << beef_menu_init.at(picking_order - 1) << ": ";
-				if (!(cin >> _quantity) || _quantity < 1) {
+				if (!(cin >> _quantity)) {
 
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
 					cout << "\n\t\t===============================================================" << endl;
-					cout << "\t\t  Error message: Please enter a valid integer & valid quantity." << endl;
+					cout << "\t\t  Invalid Input: Please input integer only." << endl;
+					cout << "\t\t===============================================================\n" << endl;
+				} else if (_quantity < 1) {
+					cout << "\n\t\t===============================================================" << endl;
+					cout << "\t\t  Invalid Input: Please input valid integer." << endl;
 					cout << "\t\t===============================================================\n" << endl;
 				} else {
-
 					break;
 				}
 			} while (true);
@@ -142,15 +160,21 @@ public:
 
 				do {
 					cout << "Enter your choice: ";
-					if (!(cin >> choice) || choice < 0 || choice > 2) {
-
+					if (!(cin >> choice)) {
 						cin.clear();
 						cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						cout << "\n\t\t===============================================================" << endl;
-						cout << "\t\t  Error message: Please enter a valid integer between 1 and 2." << endl;
+						cout << "\t\t  Invalid Input: Please input integer only." << endl;
+						cout << "\t\t===============================================================\n" << endl;
+					} else if (choice < 0) {
+						cout << "\n\t\t===============================================================" << endl;
+						cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+						cout << "\t\t===============================================================\n" << endl;
+					} else if (choice > 2) {
+						cout << "\n\t\t===============================================================" << endl;
+						cout << "\t\t  Invalid Input: Please input between 1 and 2." << endl;
 						cout << "\t\t===============================================================\n" << endl;
 					} else {
-
 						break;
 					}
 				} while (true);
@@ -162,15 +186,22 @@ public:
 					int option;
 					do {
 						cout << "What do you edit: ";
-						if (!(cin >> option) || option < 1 || option > 2) {
+						if (!(cin >> option)) {
 
 							cin.clear();
 							cin.ignore(numeric_limits<streamsize>::max(), '\n');
 							cout << "\n\t\t===============================================================" << endl;
-							cout << "\t\t  Error message: Please enter a valid integer between 1 and 2." << endl;
+							cout << "\t\t  Invalid Input: Please input integer only." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else if (option < 1) {
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else if (option > 2) {
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Invalid Input: Please input between 1 and 2." << endl;
 							cout << "\t\t===============================================================\n" << endl;
 						} else {
-
 							break;
 						}
 					} while (true);
@@ -180,7 +211,6 @@ public:
 						show_chick_burgers_menu();
 						char pick_menu;
 						cout << "Previous order is: " << beef_menu_init.at(picking_order - 1) << " (beef menu) and quantity is " << _quantity << "\n";
-
 						do {
 
 							cout << "\nB - Beef Menu\n";
@@ -194,10 +224,8 @@ public:
 								exit(1);
 							}
 
-
 							cin.clear();
 							cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
 
 							if (toupper(pick_menu) == 'B' || toupper(pick_menu) == 'C') {
 								break;
@@ -216,12 +244,20 @@ public:
 							do {
 								show_beef_burgers_menu();
 								cout << "Enter your order [1-5]: ";
-								if (!(cin >> picking_order) || picking_order < 1 || picking_order > 5) {
+								if (!(cin >> picking_order)) {
 
 									cin.clear();
 									cin.ignore(numeric_limits<streamsize>::max(), '\n');
 									cout << "\n\t\t===============================================================" << endl;
-									cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+									cout << "\t\t  Invalid Input: Please input integer only." << endl;
+									cout << "\t\t===============================================================\n" << endl;
+								} else if (picking_order < 1) {
+									cout << "\n\t\t===============================================================" << endl;
+									cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+									cout << "\t\t===============================================================\n" << endl;
+								} else if (picking_order > 5) {
+									cout << "\n\t\t===============================================================" << endl;
+									cout << "\t\t  Invalid Input: Please input between 1 and 5." << endl;
 									cout << "\t\t===============================================================\n" << endl;
 								} else {
 
@@ -273,12 +309,20 @@ public:
 							do {
 								show_chick_burgers_menu();
 								cout << "Enter your order [1-5]: ";
-								if (!(cin >> picking_order) || picking_order < 1 || picking_order > 5) {
+								if (!(cin >> picking_order)) {
 
 									cin.clear();
 									cin.ignore(numeric_limits<streamsize>::max(), '\n');
 									cout << "\n\t\t===============================================================" << endl;
-									cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+									cout << "\t\t  Invalid Input: Please input integer only." << endl;
+									cout << "\t\t===============================================================\n" << endl;
+								} else if (picking_order < 1) {
+									cout << "\n\t\t===============================================================" << endl;
+									cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+									cout << "\t\t===============================================================\n" << endl;
+								} else if (picking_order > 5) {
+									cout << "\n\t\t===============================================================" << endl;
+									cout << "\t\t  Invalid Input: Please input between 1 and 5." << endl;
 									cout << "\t\t===============================================================\n" << endl;
 								} else {
 
@@ -340,7 +384,11 @@ public:
 								cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 								cout << "\n\t\t===============================================================" << endl;
-								cout << "\t\t  Error message: Please enter a valid integer & valid quantity." << endl;
+								cout << "\t\t  Invalid Input: Please input integer only." << endl;
+								cout << "\t\t===============================================================\n" << endl;
+							} else if (_quantity < 1) {
+								cout << "\n\t\t===============================================================" << endl;
+								cout << "\t\t  Invalid Input: Please input valid integer." << endl;
 								cout << "\t\t===============================================================\n" << endl;
 							} else {
 
@@ -401,7 +449,6 @@ public:
 					cout << "\t\t\tInvalid input. Please enter 'y' or 'n'." << endl;
 					cout << "\t\t=======================================================\n" << endl;
 				} else {
-
 					break;
 				}
 			} while (true);
@@ -432,15 +479,23 @@ public:
 			do {
 
 				cout << "Enter your order [1-5]: ";
-				if (!(cin >> picking_order) || picking_order < 1 || picking_order > 5) {
+				if (!(cin >> picking_order)) {
 
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 					cout << "\n\t\t===============================================================" << endl;
-					cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+					cout << "\t\t  Invalid Input: Please input integer only." << endl;
 					cout << "\t\t===============================================================\n" << endl;
 
+				} else if (picking_order < 1) {
+					cout << "\n\t\t===============================================================" << endl;
+					cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+					cout << "\t\t===============================================================\n" << endl;
+				} else if (picking_order > 5) {
+					cout << "\n\t\t===============================================================" << endl;
+					cout << "\t\t  Invalid Input: Please input between 1 and 5." << endl;
+					cout << "\t\t===============================================================\n" << endl;
 				} else {
 
 					break;
@@ -451,13 +506,17 @@ public:
 
 			do {
 				cout << "How many " << chick_menu_init.at(picking_order - 1) << ": ";
-				if (!(cin >> _quantity) || _quantity < 1) {
+				if (!(cin >> _quantity)) {
 
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 					cout << "\n\t\t===============================================================" << endl;
-					cout << "\t\t  Error message: Please enter a valid integer & valid quantity." << endl;
+					cout << "\t\t  Invalid Input: Please input integer only." << endl;
+					cout << "\t\t===============================================================\n" << endl;
+				} else if (_quantity < 1) {
+					cout << "\n\t\t===============================================================" << endl;
+					cout << "\t\t  Invalid Input: Please input valid integer." << endl;
 					cout << "\t\t===============================================================\n" << endl;
 				} else {
 
@@ -494,12 +553,20 @@ public:
 
 				do {
 					cout << "Enter your choice: ";
-					if (!(cin >> choice) || choice < 0 || choice > 2) {
+					if (!(cin >> choice)) {
 
 						cin.clear();
 						cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						cout << "\n\t\t===============================================================" << endl;
-						cout << "\t\t  Error message: Please enter a valid integer between 1 and 2." << endl;
+						cout << "\t\t  Invalid Input: Please input integer only." << endl;
+						cout << "\t\t===============================================================\n" << endl;
+					} else if (choice < 0) {
+						cout << "\n\t\t===============================================================" << endl;
+						cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+						cout << "\t\t===============================================================\n" << endl;
+					} else if (choice > 2) {
+						cout << "\n\t\t===============================================================" << endl;
+						cout << "\t\t  Invalid Input: Please input between 1 and 2." << endl;
 						cout << "\t\t===============================================================\n" << endl;
 					} else {
 
@@ -514,12 +581,20 @@ public:
 					int option;
 					do {
 						cout << "What do you edit: ";
-						if (!(cin >> option) || option < 1 || option > 2) {
+						if (!(cin >> option)) {
 
 							cin.clear();
 							cin.ignore(numeric_limits<streamsize>::max(), '\n');
 							cout << "\n\t\t===============================================================" << endl;
-							cout << "\t\t  Error message: Please enter a valid integer between 1 and 2." << endl;
+							cout << "\t\t  Invalid Input: Please input integer only." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else if (option < 1) {
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else if (option > 2) {
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Invalid Input: Please input between 1 and 2." << endl;
 							cout << "\t\t===============================================================\n" << endl;
 						} else {
 
@@ -568,12 +643,20 @@ public:
 							do {
 								show_chick_burgers_menu();
 								cout << "Enter your order [1-5]: ";
-								if (!(cin >> picking_order) || picking_order < 1 || picking_order > 5) {
+								if (!(cin >> picking_order)) {
 
 									cin.clear();
 									cin.ignore(numeric_limits<streamsize>::max(), '\n');
 									cout << "\n\t\t===============================================================" << endl;
-									cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+									cout << "\t\t  Invalid Input: Please input integer only." << endl;
+									cout << "\t\t===============================================================\n" << endl;
+								} else if (picking_order < 1) {
+									cout << "\n\t\t===============================================================" << endl;
+									cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+									cout << "\t\t===============================================================\n" << endl;
+								} else if (picking_order > 5) {
+									cout << "\n\t\t===============================================================" << endl;
+									cout << "\t\t  Invalid Input: Please input between 1 and 5." << endl;
 									cout << "\t\t===============================================================\n" << endl;
 								} else {
 
@@ -624,12 +707,20 @@ public:
 							do {
 								show_beef_burgers_menu();
 								cout << "Enter your order [1-5]: ";
-								if (!(cin >> picking_order) || picking_order < 1 || picking_order > 5) {
+								if (!(cin >> picking_order)) {
 
 									cin.clear();
 									cin.ignore(numeric_limits<streamsize>::max(), '\n');
 									cout << "\n\t\t===============================================================" << endl;
-									cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+									cout << "\t\t  Invalid Input: Please input integer only." << endl;
+									cout << "\t\t===============================================================\n" << endl;
+								} else if (picking_order < 1) {
+									cout << "\n\t\t===============================================================" << endl;
+									cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+									cout << "\t\t===============================================================\n" << endl;
+								} else if (picking_order > 5) {
+									cout << "\n\t\t===============================================================" << endl;
+									cout << "\t\t  Invalid Input: Please input between 1 and 5." << endl;
 									cout << "\t\t===============================================================\n" << endl;
 								} else {
 
@@ -682,13 +773,17 @@ public:
 
 						do {
 							cout << "Enter new quantity: ";
-							if (!(cin >> _quantity) || _quantity < 1) {
+							if (!(cin >> _quantity)) {
 
 								cin.clear();
 								cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 								cout << "\n\t\t===============================================================" << endl;
-								cout << "\t\t  Error message: Please enter a valid integer & valid quantity." << endl;
+								cout << "\t\t  Invalid Input: Please input integer only." << endl;
+								cout << "\t\t===============================================================\n" << endl;
+							} else if (_quantity < 1) {
+								cout << "\n\t\t===============================================================" << endl;
+								cout << "\t\t  Invalid Input: Please input valid integer." << endl;
 								cout << "\t\t===============================================================\n" << endl;
 							} else {
 
@@ -792,17 +887,24 @@ public:
 
 		if (delete_or_not == 'y' || delete_or_not == 'Y') {
 		start:
-			// bug here
 			display_order();
 			do {
 				cout << "\nEnter number do you want to delete: ";
-				if (!(cin >> number_to_delete) || number_to_delete <= 0 || number_to_delete > foods.size()) {
+				if (!(cin >> number_to_delete)) {
 
 					cout << number_to_delete << "\n";
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					cout << "\n\t\t===============================================================" << endl;
-					cout << "\t\t   Invalid input. Please enter a valid non-negative integer." << endl;
+					cout << "\t\t  Invalid Input: Please input integer only." << endl;
+					cout << "\t\t===============================================================\n" << endl;
+				} else if (number_to_delete <= 0) {
+					cout << "\n\t\t===============================================================" << endl;
+					cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+					cout << "\t\t===============================================================\n" << endl;
+				} else if (number_to_delete > foods.size()) {
+					cout << "\n\t\t===============================================================" << endl;
+					cout << "\t\t  Invalid Input: Please input between not higher the number displayed." << endl;
 					cout << "\t\t===============================================================\n" << endl;
 				} else {
 
@@ -878,12 +980,20 @@ public:
 					do {
 						cout << "\nEnter Number to decrease the Quantity: ";
 
-						if (!(cin >> decrease_quantity) || decrease_quantity <= 0 || decrease_quantity > quantity.at(number_to_delete - 1)) {
+						if (!(cin >> decrease_quantity)) {
 
 							cin.clear();
 							cin.ignore(numeric_limits<streamsize>::max(), '\n');
 							cout << "\n\t\t===============================================================" << endl;
-							cout << "\t\t   Invalid input. Please enter a valid non-negative integer." << endl;
+							cout << "\t\t  Invalid Input: Please input integer only." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else if (decrease_quantity <= 0) {
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else if (decrease_quantity > quantity.at(number_to_delete - 1)) {
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Invalid Input: Please input not higher the quantity." << endl;
 							cout << "\t\t===============================================================\n" << endl;
 						} else {
 
@@ -957,15 +1067,22 @@ public:
 
 					do {
 						cout << "\nEnter Number to decrease the Quantity: ";
-						if (!(cin >> decrease_quantity) || decrease_quantity <= 0 || decrease_quantity > quantity.at(number_to_delete - 1)) {
+						if (!(cin >> decrease_quantity)) {
 
 							cin.clear();
 							cin.ignore(numeric_limits<streamsize>::max(), '\n');
 							cout << "\n\t\t===============================================================" << endl;
-							cout << "\t\t   Invalid input. Please enter a valid non-negative integer." << endl;
+							cout << "\t\t  Invalid Input: Please input integer only." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else if (decrease_quantity <= 0) {
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else if (decrease_quantity > quantity.at(number_to_delete - 1)) {
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Invalid Input: Please input not higher the quantity." << endl;
 							cout << "\t\t===============================================================\n" << endl;
 						} else {
-
 							break;
 						}
 					} while (true);
@@ -1110,7 +1227,7 @@ public:
 
 		if (toupper(edit_or_not) == 'Y') {
 			do {
-			display_order();
+				display_order();
 				cout << "Enter number to edit: ";
 				if (!(cin >> index) || index < 0 || index > foods.size()) {
 
@@ -1154,10 +1271,16 @@ public:
 			cout << "Select what you want to edit: ";
 			cin >> select;
 
-			if (cin.fail() || select <= 0) {
+			if (cin.fail()) {
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cout << "Invalid input. Please enter a valid positive integer.\n";
+				cout << "\n\t\t===============================================================" << endl;
+				cout << "\t\t  Invalid Input: Please input integer only." << endl;
+				cout << "\t\t===============================================================\n" << endl;
+			} else if (select <= 0) {
+				cout << "\n\t\t===============================================================" << endl;
+				cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+				cout << "\t\t===============================================================\n" << endl;
 			} else {
 				break;
 			}
@@ -1200,11 +1323,19 @@ public:
 				int picking_order;
 				do {
 					cout << "Enter your order [1-5]: ";
-					if (!(cin >> picking_order) || picking_order < 1 || picking_order > 5) {
+					if (!(cin >> picking_order)) {
 						cin.clear();
 						cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						cout << "\n\t\t===============================================================" << endl;
-						cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+						cout << "\t\t  Invalid Input: Please input integer only." << endl;
+						cout << "\t\t===============================================================\n" << endl;
+					} else if (picking_order < 1) {
+						cout << "\n\t\t===============================================================" << endl;
+						cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+						cout << "\t\t===============================================================\n" << endl;
+					} else if (picking_order > 5) {
+						cout << "\n\t\t===============================================================" << endl;
+						cout << "\t\t  Invalid Input: Please input between 1 and 5." << endl;
 						cout << "\t\t===============================================================\n" << endl;
 					} else {
 						break;
@@ -1224,11 +1355,19 @@ public:
 				int picking_order;
 				do {
 					cout << "Enter your order [1-5]: ";
-					if (!(cin >> picking_order) || picking_order < 1 || picking_order > 5) {
+					if (!(cin >> picking_order)) {
 						cin.clear();
 						cin.ignore(numeric_limits<streamsize>::max(), '\n');
 						cout << "\n\t\t===============================================================" << endl;
-						cout << "\t\t  Error message: Please enter a valid integer between 1 and 5." << endl;
+						cout << "\t\t  Invalid Input: Please input integer only." << endl;
+						cout << "\t\t===============================================================\n" << endl;
+					} else if (picking_order < 1) {
+						cout << "\n\t\t===============================================================" << endl;
+						cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+						cout << "\t\t===============================================================\n" << endl;
+					} else if (picking_order > 5) {
+						cout << "\n\t\t===============================================================" << endl;
+						cout << "\t\t  Invalid Input: Please input between 1 and 5." << endl;
 						cout << "\t\t===============================================================\n" << endl;
 					} else {
 						break;
@@ -1246,11 +1385,15 @@ public:
 			int new_quantity;
 			do {
 				cout << "Enter new quantity: ";
-				if (!(cin >> new_quantity) || new_quantity < 1) {
+				if (!(cin >> new_quantity)) {
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					cout << "\n\t\t===============================================================" << endl;
-					cout << "\t\t  Error message: Please enter a valid integer" << endl;
+					cout << "\t\t  Invalid Input: Please input integer only." << endl;
+					cout << "\t\t===============================================================\n" << endl;
+				} else if (new_quantity < 1) {
+					cout << "\n\t\t===============================================================" << endl;
+					cout << "\t\t  Invalid Input: Please input valid integer." << endl;
 					cout << "\t\t===============================================================\n" << endl;
 				} else {
 					break;
@@ -1275,13 +1418,16 @@ public:
 
 		do {
 			cout << "\nEnter your Age (age >= 60 : 10% Discounted): ";
-			if (!(cin >> age) || age <= 0) {
-
+			if (!(cin >> age)) {
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 				cout << "\n\t\t===============================================================" << endl;
 				cout << "\t\t   Invalid input. Please enter a valid non-negative integer." << endl;
+				cout << "\t\t===============================================================\n" << endl;
+			} else if (age <= 0) {
+				cout << "\n\t\t===============================================================" << endl;
+				cout << "\t\t  Invalid Input: Please input valid integer." << endl;
 				cout << "\t\t===============================================================\n" << endl;
 			} else {
 
@@ -1327,15 +1473,18 @@ public:
 
 		do {
 			cout << "\nEnter payment: ";
-			if (!(cin >> payment) || payment < 0 || payment == 0) {
+			if (!(cin >> payment)) {
 
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				cout << "\n\t\t===============================================================" << endl;
 				cout << "\t\t   Invalid input. Please enter a valid non-negative integer." << endl;
 				cout << "\t\t===============================================================\n" << endl;
+			} else if (payment <= 0) {
+				cout << "\n\t\t===============================================================" << endl;
+				cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+				cout << "\t\t===============================================================\n" << endl;
 			} else {
-
 				break;
 			}
 		} while (true);
@@ -1377,12 +1526,16 @@ public:
 				if (add_more == 'y' || add_more == 'Y') {
 					do {
 						cout << "\nAdd Money: ";
-						if (!(cin >> add_money) || add_money < 0 || add_money == 0) {
+						if (!(cin >> add_money)) {
 
 							cin.clear();
 							cin.ignore(numeric_limits<streamsize>::max(), '\n');
 							cout << "\n\t\t===============================================================" << endl;
 							cout << "\t\t   Invalid input. Please enter a valid non-negative integer." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else if (add_money <= 0) {
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Invalid Input: Please input valid integer." << endl;
 							cout << "\t\t===============================================================\n" << endl;
 						} else {
 
