@@ -30,6 +30,22 @@ public:
 	vector<string> beef_menu_init;
 	vector<string> chick_menu_init;
 
+	// order for history purposes
+	vector<string> added_foods;
+	vector<int> added_quantity;
+	vector<int> added_price;
+	vector<string> added_date_time;
+
+	vector<string> updated_foods;
+	vector<int> updated_quantity;
+	vector<int> updated_price;
+	vector<string> updated_date_time;
+
+	vector<string> deleted_foods;
+	vector<int> deleted_quantity;
+	vector<int> deleted_price;
+	vector<string> deleted_date_time;
+
 	// for audit
 	vector<string> date_time;
 
@@ -286,11 +302,21 @@ public:
 								quantity.push_back(_quantity);
 								price.push_back(120);
 
+								added_foods.push_back("Beef Burger");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(120);
+								added_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 2) {
 
 								foods.push_back("Cheese Burger  ");
 								quantity.push_back(_quantity);
 								price.push_back(130);
+
+								added_foods.push_back("Cheese Burger");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(130);
+								added_date_time.push_back(get_current_date_and_time());
 
 							} else if (picking_order == 3) {
 
@@ -298,11 +324,21 @@ public:
 								quantity.push_back(_quantity);
 								price.push_back(140);
 
+								added_foods.push_back("Beef Bacon");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(140);
+								added_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 4) {
 
 								foods.push_back("Creamy Mushroom");
 								quantity.push_back(_quantity);
 								price.push_back(100);
+
+								added_foods.push_back("Creamy Mushroom");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(100);
+								added_date_time.push_back(get_current_date_and_time());
 
 							} else if (picking_order == 5) {
 
@@ -310,7 +346,13 @@ public:
 								quantity.push_back(_quantity);
 								price.push_back(110);
 
+								added_foods.push_back("Hawaiian Burger");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(110);
+								added_date_time.push_back(get_current_date_and_time());
+
 							}
+
 
 							goto start;
 						} else if (toupper(pick_menu) == 'C') {
@@ -353,11 +395,21 @@ public:
 								quantity.push_back(_quantity);
 								price.push_back(100);
 
+								added_foods.push_back("Spicy Tandoori");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(100);
+								added_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 2) {
 
 								foods.push_back("Spicy Buffalo   ");
 								quantity.push_back(_quantity);
 								price.push_back(100);
+
+								added_foods.push_back("Spicy Buffalo");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(100);
+								added_date_time.push_back(get_current_date_and_time());
 
 							} else if (picking_order == 3) {
 
@@ -365,17 +417,32 @@ public:
 								quantity.push_back(_quantity);
 								price.push_back(99);
 
+								added_foods.push_back("BBQ Chikcen");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(99);
+								added_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 4) {
 
 								foods.push_back("Crispy Chicken  ");
 								quantity.push_back(_quantity);
 								price.push_back(160);
 
+								added_foods.push_back("Crispy chicken");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(160);
+								added_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 5) {
 
 								foods.push_back("Chicken Paradise");
 								quantity.push_back(_quantity);
 								price.push_back(190);
+
+								added_foods.push_back("Chicken Paradise");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(190);
+								added_date_time.push_back(get_current_date_and_time());
 
 							}
 
@@ -420,11 +487,21 @@ public:
 					quantity.push_back(_quantity);
 					price.push_back(120);
 
+					added_foods.push_back("Beef Burger");
+					added_quantity.push_back(_quantity);
+					added_price.push_back(120);
+					added_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 2) {
 
 					foods.push_back("Cheese Burger  ");
 					quantity.push_back(_quantity);
 					price.push_back(130);
+
+					added_foods.push_back("Cheese Burger");
+					added_quantity.push_back(_quantity);
+					added_price.push_back(130);
+					added_date_time.push_back(get_current_date_and_time());
 
 				} else if (picking_order == 3) {
 
@@ -432,17 +509,32 @@ public:
 					quantity.push_back(_quantity);
 					price.push_back(140);
 
+					added_foods.push_back("Beef Burger");
+					added_quantity.push_back(_quantity);
+					added_price.push_back(140);
+					added_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 4) {
 
 					foods.push_back("Creamy Mushroom");
 					quantity.push_back(_quantity);
 					price.push_back(100);
 
+					added_foods.push_back("Creamy Mushroom");
+					added_quantity.push_back(_quantity);
+					added_price.push_back(100);
+					added_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 5) {
 
 					foods.push_back("Hawaiian Burger");
 					quantity.push_back(_quantity);
 					price.push_back(110);
+
+					added_foods.push_back("Hawaiian Burger");
+					added_quantity.push_back(_quantity);
+					added_price.push_back(110);
+					added_date_time.push_back(get_current_date_and_time());
 
 				}
 			}
@@ -685,11 +777,21 @@ public:
 								quantity.push_back(_quantity);
 								price.push_back(100);
 
+								added_foods.push_back("Spicy Tandoori");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(100);
+								added_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 2) {
 
 								foods.push_back("Spicy Buffalo   ");
 								quantity.push_back(_quantity);
 								price.push_back(100);
+
+								added_foods.push_back("Spicy Buffalo");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(100);
+								added_date_time.push_back(get_current_date_and_time());
 
 							} else if (picking_order == 3) {
 
@@ -697,17 +799,32 @@ public:
 								quantity.push_back(_quantity);
 								price.push_back(99);
 
+								added_foods.push_back("BBQ Chicken");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(99);
+								added_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 4) {
 
 								foods.push_back("Crispy Chicken  ");
 								quantity.push_back(_quantity);
 								price.push_back(160);
 
+								added_foods.push_back("Crispy Chicken");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(160);
+								added_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 5) {
 
 								foods.push_back("Chicken Paradise");
 								quantity.push_back(_quantity);
 								price.push_back(190);
+
+								added_foods.push_back("Chicken Paradise");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(190);
+								added_date_time.push_back(get_current_date_and_time());
 
 							}
 
@@ -749,11 +866,21 @@ public:
 								quantity.push_back(_quantity);
 								price.push_back(120);
 
+								added_foods.push_back("Beef Burger");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(120);
+								added_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 2) {
 
 								foods.push_back("Cheese Burger  ");
 								quantity.push_back(_quantity);
 								price.push_back(130);
+
+								added_foods.push_back("Cheese Burger");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(130);
+								added_date_time.push_back(get_current_date_and_time());
 
 							} else if (picking_order == 3) {
 
@@ -761,17 +888,32 @@ public:
 								quantity.push_back(_quantity);
 								price.push_back(140);
 
+								added_foods.push_back("Beef Burger");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(140);
+								added_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 4) {
 
 								foods.push_back("Creamy Mushroom");
 								quantity.push_back(_quantity);
 								price.push_back(100);
 
+								added_foods.push_back("Creamy Mushroom");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(100);
+								added_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 5) {
 
 								foods.push_back("Hawaiian Burger");
 								quantity.push_back(_quantity);
 								price.push_back(110);
+
+								added_foods.push_back("Hawaiian Burger");
+								added_quantity.push_back(_quantity);
+								added_price.push_back(110);
+								added_date_time.push_back(get_current_date_and_time());
 
 							}
 
@@ -815,11 +957,21 @@ public:
 					quantity.push_back(_quantity);
 					price.push_back(100);
 
+					added_foods.push_back("Spicy Tandoori");
+					added_quantity.push_back(_quantity);
+					added_price.push_back(100);
+					added_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 2) {
 
 					foods.push_back("Spicy Buffalo   ");
 					quantity.push_back(_quantity);
 					price.push_back(100);
+
+					added_foods.push_back("Spicy Buffalo");
+					added_quantity.push_back(_quantity);
+					added_price.push_back(100);
+					added_date_time.push_back(get_current_date_and_time());
 
 				} else if (picking_order == 3) {
 
@@ -827,17 +979,32 @@ public:
 					quantity.push_back(_quantity);
 					price.push_back(99);
 
+					added_foods.push_back("BBQ Chicken");
+					added_quantity.push_back(_quantity);
+					added_price.push_back(99);
+					added_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 4) {
 
 					foods.push_back("Crispy Chicken  ");
 					quantity.push_back(_quantity);
 					price.push_back(160);
 
+					added_foods.push_back("Crispy Chicken");
+					added_quantity.push_back(_quantity);
+					added_price.push_back(160);
+					added_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 5) {
 
 					foods.push_back("Chicken Paradise");
 					quantity.push_back(_quantity);
 					price.push_back(190);
+
+					added_foods.push_back("Chicken Paradise");
+					added_quantity.push_back(_quantity);
+					added_price.push_back(190);
+					added_date_time.push_back(get_current_date_and_time());
 
 				}
 			}
@@ -1500,6 +1667,7 @@ public:
 		if (payment == overall_total) {
 
 			c "Thank you Come Again!\n";
+			view_history();
 			exit(1);
 		} else if (payment > overall_total) {
 			int p = payment - overall_total;
@@ -1567,6 +1735,7 @@ public:
 
 							cout << "\nExact Amount, No Change\n";
 							c "Thank you Come Again!\n";
+							view_history();
 							exit(1);
 						} else if (payment > overall_total) {
 
@@ -1624,12 +1793,11 @@ public:
 		pick_what_menu(toupper(picking));
 	}
 
-
-	std::string get_current_date_and_time() {
+	string get_current_date_and_time() {
 		// Get the current time
-		auto currentTime = std::chrono::system_clock::now();
-		std::time_t time = std::chrono::system_clock::to_time_t(currentTime);
-		std::tm* timeInfo = std::localtime(&time);
+		auto currentTime = chrono::system_clock::now();
+		time_t time = chrono::system_clock::to_time_t(currentTime);
+		tm* timeInfo = localtime(&time);
 
 		// Convert the hour to 12-hour format
 		int hour12 = timeInfo->tm_hour % 12;
@@ -1641,26 +1809,29 @@ public:
 		const char* ampm = (timeInfo->tm_hour < 12) ? "AM" : "PM";
 
 		// Create a stringstream to format the date and time
-		std::stringstream resultStream;
+		stringstream resultStream;
 		resultStream << (timeInfo->tm_year + 1900) << "-"
-			<< std::setfill('0') << std::setw(2) << (timeInfo->tm_mon + 1) << "-"
-			<< std::setfill('0') << std::setw(2) << timeInfo->tm_mday << " "
-			<< std::setfill('0') << std::setw(2) << hour12 << ":"
-			<< std::setfill('0') << std::setw(2) << timeInfo->tm_min << " " << ampm;
+			<< setfill('0') << setw(2) << (timeInfo->tm_mon + 1) << "-"
+			<< setfill('0') << setw(2) << timeInfo->tm_mday << " "
+			<< setfill('0') << setw(2) << hour12 << ":"
+			<< setfill('0') << setw(2) << timeInfo->tm_min << " " << ampm;
 
 		// Return the formatted date and time as a string
 		return resultStream.str();
 	}
 
 	void view_history() {
+		cout << "\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n\n";
 
+		for (int i = 0; i < added_foods.size(); i++) {
+			cout << i + 1 << ". \t\t" << added_foods.at(i) << "\t\t   " << added_quantity.at(i) << "\t\t\t " << added_price.at(i) << "\t    " << added_date_time.at(i) << "\n";
+		}
 	}
 };
 
 int main() {
 	char pick_menu;
 	Burger_POS _burger;
-
 
 	_burger.show_beef_burgers_menu();
 	_burger.show_chick_burgers_menu();
