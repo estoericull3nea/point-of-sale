@@ -1578,6 +1578,7 @@ public:
 			} while (true);
 			quantity.at(index) = new_quantity;
 			cout << "\nQuantity Edited.\n";
+			// bug here
 			display_order();
 		}
 	}
