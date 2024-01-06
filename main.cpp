@@ -377,7 +377,6 @@ public:
 								updated_date_time.push_back(get_current_date_and_time());
 
 							}
-							// updated_foods.at(picking_order - 1) = beef_menu_init.at(picking_order - 1);
 
 							goto start;
 						} else if (toupper(pick_menu) == 'C') {
@@ -530,8 +529,6 @@ public:
 						updated_foods.push_back(beef_menu_init.at(picking_order - 1));
 						updated_quantity.push_back(_quantity);
 						updated_date_time.push_back(get_current_date_and_time());
-
-						// bug here
 
 						goto start;
 					}
@@ -1085,8 +1082,6 @@ public:
 						updated_foods.push_back(chick_menu_init.at(picking_order - 1));
 						updated_quantity.push_back(_quantity);
 						updated_date_time.push_back(get_current_date_and_time());
-
-						// bug here
 
 						goto start;
 					}
@@ -1749,7 +1744,6 @@ public:
 			quantity.at(index) = new_quantity;
 			cout << "\nQuantity Edited.\n";
 			updated_quantity.at(index) = new_quantity;
-			// bug here
 			display_order();
 		}
 	}
