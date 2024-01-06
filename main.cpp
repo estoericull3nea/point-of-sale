@@ -307,6 +307,11 @@ public:
 								added_price.push_back(120);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(120);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 2) {
 
 								foods.push_back("Cheese Burger  ");
@@ -317,6 +322,11 @@ public:
 								added_quantity.push_back(_quantity);
 								added_price.push_back(130);
 								added_date_time.push_back(get_current_date_and_time());
+
+								updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(130);
+								updated_date_time.push_back(get_current_date_and_time());
 
 							} else if (picking_order == 3) {
 
@@ -329,6 +339,11 @@ public:
 								added_price.push_back(140);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(140);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 4) {
 
 								foods.push_back("Creamy Mushroom");
@@ -340,6 +355,11 @@ public:
 								added_price.push_back(100);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(100);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 5) {
 
 								foods.push_back("Hawaiian Burger");
@@ -350,6 +370,11 @@ public:
 								added_quantity.push_back(_quantity);
 								added_price.push_back(110);
 								added_date_time.push_back(get_current_date_and_time());
+
+								updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(110);
+								updated_date_time.push_back(get_current_date_and_time());
 
 							}
 
@@ -400,6 +425,11 @@ public:
 								added_price.push_back(100);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(100);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 2) {
 
 								foods.push_back("Spicy Buffalo   ");
@@ -410,6 +440,11 @@ public:
 								added_quantity.push_back(_quantity);
 								added_price.push_back(100);
 								added_date_time.push_back(get_current_date_and_time());
+
+								updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(100);
+								updated_date_time.push_back(get_current_date_and_time());
 
 							} else if (picking_order == 3) {
 
@@ -422,6 +457,11 @@ public:
 								added_price.push_back(99);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(99);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 4) {
 
 								foods.push_back("Crispy Chicken  ");
@@ -433,6 +473,11 @@ public:
 								added_price.push_back(160);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(160);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 5) {
 
 								foods.push_back("Chicken Paradise");
@@ -443,6 +488,11 @@ public:
 								added_quantity.push_back(_quantity);
 								added_price.push_back(190);
 								added_date_time.push_back(get_current_date_and_time());
+
+								updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(190);
+								updated_date_time.push_back(get_current_date_and_time());
 
 							}
 
@@ -475,6 +525,10 @@ public:
 						cout << "Order: " << beef_menu_init.at(picking_order - 1) << "\n";
 						cout << "Quantity: " << _quantity << "\n\n";
 
+						updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+						updated_quantity.push_back(_quantity);
+						updated_date_time.push_back(get_current_date_and_time());
+
 						goto start;
 					}
 				} else if (choice == 2) {
@@ -492,6 +546,11 @@ public:
 					added_price.push_back(120);
 					added_date_time.push_back(get_current_date_and_time());
 
+					updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+					updated_quantity.push_back(_quantity);
+					updated_price.push_back(120);
+					updated_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 2) {
 
 					foods.push_back("Cheese Burger  ");
@@ -502,6 +561,11 @@ public:
 					added_quantity.push_back(_quantity);
 					added_price.push_back(130);
 					added_date_time.push_back(get_current_date_and_time());
+
+					updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+					updated_quantity.push_back(_quantity);
+					updated_price.push_back(130);
+					updated_date_time.push_back(get_current_date_and_time());
 
 				} else if (picking_order == 3) {
 
@@ -514,6 +578,11 @@ public:
 					added_price.push_back(140);
 					added_date_time.push_back(get_current_date_and_time());
 
+					updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+					updated_quantity.push_back(_quantity);
+					updated_price.push_back(140);
+					updated_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 4) {
 
 					foods.push_back("Creamy Mushroom");
@@ -525,6 +594,11 @@ public:
 					added_price.push_back(100);
 					added_date_time.push_back(get_current_date_and_time());
 
+					updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+					updated_quantity.push_back(_quantity);
+					updated_price.push_back(100);
+					updated_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 5) {
 
 					foods.push_back("Hawaiian Burger");
@@ -535,6 +609,11 @@ public:
 					added_quantity.push_back(_quantity);
 					added_price.push_back(110);
 					added_date_time.push_back(get_current_date_and_time());
+
+					updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+					updated_quantity.push_back(_quantity);
+					updated_price.push_back(110);
+					updated_date_time.push_back(get_current_date_and_time());
 
 				}
 			}
@@ -782,6 +861,11 @@ public:
 								added_price.push_back(100);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(100);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 2) {
 
 								foods.push_back("Spicy Buffalo   ");
@@ -792,6 +876,11 @@ public:
 								added_quantity.push_back(_quantity);
 								added_price.push_back(100);
 								added_date_time.push_back(get_current_date_and_time());
+
+								updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(100);
+								updated_date_time.push_back(get_current_date_and_time());
 
 							} else if (picking_order == 3) {
 
@@ -804,6 +893,11 @@ public:
 								added_price.push_back(99);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(99);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 4) {
 
 								foods.push_back("Crispy Chicken  ");
@@ -815,6 +909,11 @@ public:
 								added_price.push_back(160);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(160);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 5) {
 
 								foods.push_back("Chicken Paradise");
@@ -825,6 +924,11 @@ public:
 								added_quantity.push_back(_quantity);
 								added_price.push_back(190);
 								added_date_time.push_back(get_current_date_and_time());
+
+								updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(190);
+								updated_date_time.push_back(get_current_date_and_time());
 
 							}
 
@@ -871,6 +975,11 @@ public:
 								added_price.push_back(120);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(120);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 2) {
 
 								foods.push_back("Cheese Burger  ");
@@ -881,6 +990,11 @@ public:
 								added_quantity.push_back(_quantity);
 								added_price.push_back(130);
 								added_date_time.push_back(get_current_date_and_time());
+
+								updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(130);
+								updated_date_time.push_back(get_current_date_and_time());
 
 							} else if (picking_order == 3) {
 
@@ -893,6 +1007,11 @@ public:
 								added_price.push_back(140);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(140);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 4) {
 
 								foods.push_back("Creamy Mushroom");
@@ -904,6 +1023,11 @@ public:
 								added_price.push_back(100);
 								added_date_time.push_back(get_current_date_and_time());
 
+								updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(100);
+								updated_date_time.push_back(get_current_date_and_time());
+
 							} else if (picking_order == 5) {
 
 								foods.push_back("Hawaiian Burger");
@@ -914,6 +1038,11 @@ public:
 								added_quantity.push_back(_quantity);
 								added_price.push_back(110);
 								added_date_time.push_back(get_current_date_and_time());
+
+								updated_foods.push_back(beef_menu_init.at(picking_order - 1));
+								updated_quantity.push_back(_quantity);
+								updated_price.push_back(110);
+								updated_date_time.push_back(get_current_date_and_time());
 
 							}
 
@@ -945,6 +1074,10 @@ public:
 						cout << "Order: " << chick_menu_init.at(picking_order - 1) << "\n";
 						cout << "Quantity: " << _quantity << "\n\n";
 
+						updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+						updated_quantity.push_back(_quantity);
+						updated_date_time.push_back(get_current_date_and_time());
+
 						goto start;
 					}
 				} else if (choice == 2) {
@@ -962,6 +1095,11 @@ public:
 					added_price.push_back(100);
 					added_date_time.push_back(get_current_date_and_time());
 
+					updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+					updated_quantity.push_back(_quantity);
+					updated_price.push_back(100);
+					updated_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 2) {
 
 					foods.push_back("Spicy Buffalo   ");
@@ -972,6 +1110,11 @@ public:
 					added_quantity.push_back(_quantity);
 					added_price.push_back(100);
 					added_date_time.push_back(get_current_date_and_time());
+
+					updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+					updated_quantity.push_back(_quantity);
+					updated_price.push_back(100);
+					updated_date_time.push_back(get_current_date_and_time());
 
 				} else if (picking_order == 3) {
 
@@ -984,6 +1127,11 @@ public:
 					added_price.push_back(99);
 					added_date_time.push_back(get_current_date_and_time());
 
+					updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+					updated_quantity.push_back(_quantity);
+					updated_price.push_back(99);
+					updated_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 4) {
 
 					foods.push_back("Crispy Chicken  ");
@@ -995,6 +1143,11 @@ public:
 					added_price.push_back(160);
 					added_date_time.push_back(get_current_date_and_time());
 
+					updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+					updated_quantity.push_back(_quantity);
+					updated_price.push_back(160);
+					updated_date_time.push_back(get_current_date_and_time());
+
 				} else if (picking_order == 5) {
 
 					foods.push_back("Chicken Paradise");
@@ -1005,6 +1158,11 @@ public:
 					added_quantity.push_back(_quantity);
 					added_price.push_back(190);
 					added_date_time.push_back(get_current_date_and_time());
+
+					updated_foods.push_back(chick_menu_init.at(picking_order - 1));
+					updated_quantity.push_back(_quantity);
+					updated_price.push_back(190);
+					updated_date_time.push_back(get_current_date_and_time());
 
 				}
 			}
@@ -1516,7 +1674,7 @@ public:
 						break;
 					}
 				} while (true);
-				cout << "\n" << beef_menu_init.at(picking_order - 1) << " is selected!\n";
+				cout << "\n" << chick_menu_init.at(picking_order - 1) << " is selected!\n";
 
 				string new_order = beef_menu_init.at(picking_order - 1);
 				foods.at(index) = new_order;
@@ -1821,10 +1979,26 @@ public:
 	}
 
 	void view_history() {
+		added_orders();
+
+		updated_orders();
+	}
+
+	void added_orders() {
+		cout << "\nAdded Orders\n";
 		cout << "\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n\n";
 
 		for (int i = 0; i < added_foods.size(); i++) {
 			cout << i + 1 << ". \t\t" << added_foods.at(i) << "\t\t   " << added_quantity.at(i) << "\t\t\t " << added_price.at(i) << "\t    " << added_date_time.at(i) << "\n";
+		}
+	}
+
+	void updated_orders() {
+		cout << "\nEdited Orders\n";
+		cout << "\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n\n";
+
+		for (int i = 0; i < updated_foods.size(); i++) {
+			cout << i + 1 << ". \t\t" << updated_foods.at(i) << "\t\t   " << updated_quantity.at(i) << "\t\t\t " << updated_price.at(i) << "\t    " << updated_date_time.at(i) << "\n";
 		}
 	}
 };
