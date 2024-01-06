@@ -531,6 +531,8 @@ public:
 						updated_quantity.push_back(_quantity);
 						updated_date_time.push_back(get_current_date_and_time());
 
+						// bug here
+
 						goto start;
 					}
 				} else if (choice == 2) {
@@ -1083,6 +1085,8 @@ public:
 						updated_foods.push_back(chick_menu_init.at(picking_order - 1));
 						updated_quantity.push_back(_quantity);
 						updated_date_time.push_back(get_current_date_and_time());
+
+						// bug here
 
 						goto start;
 					}
@@ -1743,8 +1747,11 @@ public:
 				}
 			} while (true);
 			quantity.at(index) = new_quantity;
-			updated_quantity.at(picking_order - 1) = new_quantity;
 			cout << "\nQuantity Edited.\n";
+			// updated_quantity.at(picking_order - 1) = new_quantity;
+
+			// bug here
+
 			display_order();
 		}
 	}
