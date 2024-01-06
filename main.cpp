@@ -547,10 +547,7 @@ public:
 					added_price.push_back(120);
 					added_date_time.push_back(get_current_date_and_time());
 
-					updated_foods.push_back(beef_menu_init.at(picking_order - 1));
-					updated_quantity.push_back(_quantity);
-					updated_price.push_back(120);
-					updated_date_time.push_back(get_current_date_and_time());
+					
 
 				} else if (picking_order == 2) {
 
@@ -563,10 +560,7 @@ public:
 					added_price.push_back(130);
 					added_date_time.push_back(get_current_date_and_time());
 
-					updated_foods.push_back(beef_menu_init.at(picking_order - 1));
-					updated_quantity.push_back(_quantity);
-					updated_price.push_back(130);
-					updated_date_time.push_back(get_current_date_and_time());
+					
 
 				} else if (picking_order == 3) {
 
@@ -579,11 +573,7 @@ public:
 					added_price.push_back(140);
 					added_date_time.push_back(get_current_date_and_time());
 
-					updated_foods.push_back(beef_menu_init.at(picking_order - 1));
-					updated_quantity.push_back(_quantity);
-					updated_price.push_back(140);
-					updated_date_time.push_back(get_current_date_and_time());
-
+					
 				} else if (picking_order == 4) {
 
 					foods.push_back("Creamy Mushroom");
@@ -595,10 +585,7 @@ public:
 					added_price.push_back(100);
 					added_date_time.push_back(get_current_date_and_time());
 
-					updated_foods.push_back(beef_menu_init.at(picking_order - 1));
-					updated_quantity.push_back(_quantity);
-					updated_price.push_back(100);
-					updated_date_time.push_back(get_current_date_and_time());
+				
 
 				} else if (picking_order == 5) {
 
@@ -611,10 +598,7 @@ public:
 					added_price.push_back(110);
 					added_date_time.push_back(get_current_date_and_time());
 
-					updated_foods.push_back(beef_menu_init.at(picking_order - 1));
-					updated_quantity.push_back(_quantity);
-					updated_price.push_back(110);
-					updated_date_time.push_back(get_current_date_and_time());
+					
 
 				}
 			}
@@ -1100,10 +1084,7 @@ public:
 					added_price.push_back(100);
 					added_date_time.push_back(get_current_date_and_time());
 
-					updated_foods.push_back(chick_menu_init.at(picking_order - 1));
-					updated_quantity.push_back(_quantity);
-					updated_price.push_back(100);
-					updated_date_time.push_back(get_current_date_and_time());
+					
 
 				} else if (picking_order == 2) {
 
@@ -1116,10 +1097,7 @@ public:
 					added_price.push_back(100);
 					added_date_time.push_back(get_current_date_and_time());
 
-					updated_foods.push_back(chick_menu_init.at(picking_order - 1));
-					updated_quantity.push_back(_quantity);
-					updated_price.push_back(100);
-					updated_date_time.push_back(get_current_date_and_time());
+					
 
 				} else if (picking_order == 3) {
 
@@ -1132,10 +1110,7 @@ public:
 					added_price.push_back(99);
 					added_date_time.push_back(get_current_date_and_time());
 
-					updated_foods.push_back(chick_menu_init.at(picking_order - 1));
-					updated_quantity.push_back(_quantity);
-					updated_price.push_back(99);
-					updated_date_time.push_back(get_current_date_and_time());
+					
 
 				} else if (picking_order == 4) {
 
@@ -1148,10 +1123,7 @@ public:
 					added_price.push_back(160);
 					added_date_time.push_back(get_current_date_and_time());
 
-					updated_foods.push_back(chick_menu_init.at(picking_order - 1));
-					updated_quantity.push_back(_quantity);
-					updated_price.push_back(160);
-					updated_date_time.push_back(get_current_date_and_time());
+				
 
 				} else if (picking_order == 5) {
 
@@ -1163,12 +1135,6 @@ public:
 					added_quantity.push_back(_quantity);
 					added_price.push_back(190);
 					added_date_time.push_back(get_current_date_and_time());
-
-					updated_foods.push_back(chick_menu_init.at(picking_order - 1));
-					updated_quantity.push_back(_quantity);
-					updated_price.push_back(190);
-					updated_date_time.push_back(get_current_date_and_time());
-
 				}
 			}
 
