@@ -1283,6 +1283,13 @@ public:
 
 				if (toupper(sure_or_not) == 'Y') {
 
+					int index = number_to_delete - 1;
+
+					deleted_foods.push_back(foods.at(index));
+					deleted_quantity.push_back(quantity.at(index));
+					deleted_price.push_back(price.at(index));
+					deleted_date_time.push_back(get_current_date_and_time());
+
 					foods.erase(foods.begin() + number_to_delete - 1);
 					quantity.erase(quantity.begin() + number_to_delete - 1);
 					price.erase(price.begin() + number_to_delete - 1);
@@ -1718,8 +1725,6 @@ public:
 				string new_order = chick_menu_init.at(picking_order - 1);
 				foods.at(index) = new_order;
 				cout << "\nOrder Edited.\n";
-				// updated_foods.at(picking_order - 1) = chick_menu_init.at(picking_order - 1);
-
 				display_order();
 			}
 
@@ -1989,9 +1994,17 @@ public:
 	}
 
 	void view_history() {
-		added_orders();
+		if (added_foods.size() >= 1) {
+			added_orders();
+		}
 
-		updated_orders();
+		if (updated_foods.size() >= 1) {
+			updated_orders();
+		}
+
+		if (deleted_foods.size() >= 1) {
+			deleted_orders();
+		}
 	}
 
 	void added_orders() {
@@ -2009,6 +2022,15 @@ public:
 
 		for (int i = 0; i < updated_foods.size(); i++) {
 			cout << i + 1 << ". \t\t" << updated_foods.at(i) << "\t\t   " << updated_quantity.at(i) << "\t\t\t " << updated_price.at(i) << "\t    " << updated_date_time.at(i) << "\n";
+		}
+	}
+
+	void deleted_orders() {
+		cout << "\nDeleted Orders";
+		cout << "\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n\n";
+
+		for (int i = 0; i < deleted_foods.size(); i++) {
+			cout << i + 1 << ". \t\t" << deleted_foods.at(i) << "\t\t   " << deleted_quantity.at(i) << "\t\t\t " << deleted_price.at(i) << "\t    " << deleted_date_time.at(i) << "\n";
 		}
 	}
 };
