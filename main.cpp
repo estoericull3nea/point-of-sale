@@ -377,7 +377,7 @@ public:
 								updated_date_time.push_back(get_current_date_and_time());
 
 							}
-
+							// updated_foods.at(picking_order - 1) = beef_menu_init.at(picking_order - 1);
 
 							goto start;
 						} else if (toupper(pick_menu) == 'C') {
@@ -495,6 +495,8 @@ public:
 								updated_date_time.push_back(get_current_date_and_time());
 
 							}
+
+							// updated_foods.at(picking_order - 1) = chick_menu_init.at(picking_order - 1);
 
 							goto start;
 						}
@@ -932,6 +934,8 @@ public:
 
 							}
 
+							// updated_foods.at(picking_order - 1) = chick_menu_init.at(picking_order - 1);
+
 						} else if (toupper(pick_menu) == 'B') {
 							do {
 								show_beef_burgers_menu();
@@ -1045,6 +1049,8 @@ public:
 								updated_date_time.push_back(get_current_date_and_time());
 
 							}
+
+							// updated_foods.at(picking_order - 1) = beef_menu_init.at(picking_order - 1);
 
 						}
 					} else if (option == 2) {
@@ -1543,7 +1549,7 @@ public:
 	void ask_to_edit_order() {
 		char edit_or_not;
 		int index;
-
+	start:
 		do {
 			cout << "\nDo you want to edit your order? [y/n]: ";
 			if (!(cin >> edit_or_not) || (toupper(edit_or_not) != 'Y' && toupper(edit_or_not) != 'N')) {
@@ -1574,6 +1580,7 @@ public:
 				}
 			} while (true);
 			edit_order_by_index(index);
+			goto start;
 		}
 	}
 
@@ -1679,6 +1686,7 @@ public:
 				string new_order = beef_menu_init.at(picking_order - 1);
 				foods.at(index) = new_order;
 				cout << "\nOrder Edited.\n";
+				// updated_foods.at(picking_order - 1) = beef_menu_init.at(picking_order - 1);
 				display_order();
 
 
@@ -1711,6 +1719,8 @@ public:
 				string new_order = chick_menu_init.at(picking_order - 1);
 				foods.at(index) = new_order;
 				cout << "\nOrder Edited.\n";
+				// updated_foods.at(picking_order - 1) = chick_menu_init.at(picking_order - 1);
+
 				display_order();
 			}
 
@@ -1733,6 +1743,7 @@ public:
 				}
 			} while (true);
 			quantity.at(index) = new_quantity;
+			updated_quantity.at(picking_order - 1) = new_quantity;
 			cout << "\nQuantity Edited.\n";
 			display_order();
 		}
