@@ -349,8 +349,6 @@ public:
 								quantity.push_back(_quantity);
 								price.push_back(110);
 
-
-
 							}
 
 							updated_foods.push_back(beef_menu_init.at(picking_order - 1));
@@ -467,6 +465,7 @@ public:
 
 						updated_foods.push_back(beef_menu_init.at(picking_order - 1));
 						updated_quantity.push_back(_quantity);
+						updated_price.push_back(beef_menu_price_init.at(picking_order - 1));
 						updated_date_time.push_back(get_current_date_and_time());
 
 						goto start;
@@ -928,6 +927,7 @@ public:
 
 						updated_foods.push_back(chick_menu_init.at(picking_order - 1));
 						updated_quantity.push_back(_quantity);
+						updated_price.push_back(chick_menu_price_init.at(picking_order - 1));
 						updated_date_time.push_back(get_current_date_and_time());
 
 						goto start;
@@ -1521,7 +1521,6 @@ public:
 				string new_order = beef_menu_init.at(picking_order - 1);
 				foods.at(index) = new_order;
 				cout << "\nOrder Edited.\n";
-				// updated_foods.at(picking_order - 1) = beef_menu_init.at(picking_order - 1);
 				updated_foods.at(index) = beef_menu_init.at(picking_order - 1);
 				display_order();
 
@@ -1579,7 +1578,6 @@ public:
 			} while (true);
 			quantity.at(index) = new_quantity;
 			cout << "\nQuantity Edited.\n";
-			updated_quantity.at(index) = new_quantity;
 			display_order();
 		}
 	}
@@ -1840,7 +1838,7 @@ public:
 
 	void added_orders() {
 		cout << "\nAdded Orders";
-		cout << "\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n\n";
+		cout << "\n\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n";
 
 		for (int i = 0; i < added_foods.size(); i++) {
 			cout << i + 1 << ". \t\t" << added_foods.at(i) << "\t\t   " << added_quantity.at(i) << "\t\t\t " << added_price.at(i) << "\t    " << added_date_time.at(i) << "\n";
@@ -1849,7 +1847,7 @@ public:
 
 	void updated_orders() {
 		cout << "\nEdited Orders";
-		cout << "\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n\n";
+		cout << "\n\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n";
 
 		for (int i = 0; i < updated_foods.size(); i++) {
 			cout << i + 1 << ". \t\t" << updated_foods.at(i) << "\t\t   " << updated_quantity.at(i) << "\t\t\t " << updated_price.at(i) << "\t    " << updated_date_time.at(i) << "\n";
@@ -1858,7 +1856,7 @@ public:
 
 	void deleted_orders() {
 		cout << "\nDeleted Orders";
-		cout << "\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n\n";
+		cout << "\n\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n";
 
 		for (int i = 0; i < deleted_foods.size(); i++) {
 			cout << i + 1 << ". \t\t" << deleted_foods.at(i) << "\t\t   " << deleted_quantity.at(i) << "\t\t\t " << deleted_price.at(i) << "\t    " << deleted_date_time.at(i) << "\n";
