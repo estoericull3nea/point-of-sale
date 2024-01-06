@@ -1751,7 +1751,7 @@ public:
 			// updated_quantity.at(picking_order - 1) = new_quantity;
 
 			// bug here
-
+			
 			display_order();
 		}
 	}
