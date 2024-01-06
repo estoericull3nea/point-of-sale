@@ -1748,10 +1748,8 @@ public:
 			} while (true);
 			quantity.at(index) = new_quantity;
 			cout << "\nQuantity Edited.\n";
-			// updated_quantity.at(picking_order - 1) = new_quantity;
-
+			updated_quantity.at(index) = new_quantity;
 			// bug here
-			
 			display_order();
 		}
 	}
@@ -2003,7 +2001,7 @@ public:
 	}
 
 	void added_orders() {
-		cout << "\nAdded Orders\n";
+		cout << "\nAdded Orders";
 		cout << "\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n\n";
 
 		for (int i = 0; i < added_foods.size(); i++) {
@@ -2012,7 +2010,7 @@ public:
 	}
 
 	void updated_orders() {
-		cout << "\nEdited Orders\n";
+		cout << "\nEdited Orders";
 		cout << "\nIndex\t\tOrder Name\t\tQuantity\t\tPrice\t\tDate and Time\n\n";
 
 		for (int i = 0; i < updated_foods.size(); i++) {
