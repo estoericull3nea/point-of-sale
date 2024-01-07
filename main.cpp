@@ -15,54 +15,302 @@ class Burger_POS {
 public:
 
 	// vector default
-	vector<string> beef_menu_init;
-	vector<string> chick_menu_init;
+	vector<string> menu_for_beef_burger_init;
+	vector<string> menu_for_chick_burger_init;
 
-	vector<int> beef_menu_price_init;
-	vector<int> chick_menu_price_init;
+	vector<int> price_for_beef_burger_init;
+	vector<int> price_for_chick_burger_init;
 
-	vector<string> date_time;
-	// --------------------------------
+	vector<string> container_date_time;
 
+	// store order
+	vector<string> container_order;
+	vector<int> container_quantity;
+
+	// constructor
 	Burger_POS() {
-		beef_menu_init.push_back("Beef Burger"); 	 beef_menu_price_init.push_back(120);
-		beef_menu_init.push_back("Cheese Burger");   beef_menu_price_init.push_back(130);
-		beef_menu_init.push_back("Beef Bacon"); 	 beef_menu_price_init.push_back(140);
-		beef_menu_init.push_back("Creamy Mushroom"); beef_menu_price_init.push_back(100);
-		beef_menu_init.push_back("Hawaiian Burger"); beef_menu_price_init.push_back(110);
+		menu_for_beef_burger_init.push_back("Beef Burger"); 	 price_for_beef_burger_init.push_back(120);
+		menu_for_beef_burger_init.push_back("Cheese Burger");  price_for_beef_burger_init.push_back(130);
+		menu_for_beef_burger_init.push_back("Beef Bacon"); 	 price_for_beef_burger_init.push_back(140);
+		menu_for_beef_burger_init.push_back("Creamy Mushroom");  price_for_beef_burger_init.push_back(100);
+		menu_for_beef_burger_init.push_back("Hawaiian Burger");  price_for_beef_burger_init.push_back(110);
 
-		chick_menu_init.push_back("Spicy Tandoori");   chick_menu_price_init.push_back(100);
-		chick_menu_init.push_back("Spicy Buffalo");    chick_menu_price_init.push_back(100);
-		chick_menu_init.push_back("BBQ Chicken");      chick_menu_price_init.push_back(99);
-		chick_menu_init.push_back("Crispy Chicken");   chick_menu_price_init.push_back(160);
-		chick_menu_init.push_back("Chicken Paradise"); chick_menu_price_init.push_back(190);
+		menu_for_chick_burger_init.push_back("Spicy Tandoori");   price_for_chick_burger_init.push_back(100);
+		menu_for_chick_burger_init.push_back("Spicy Buffalo");    price_for_chick_burger_init.push_back(100);
+		menu_for_chick_burger_init.push_back("BBQ Chicken");      price_for_chick_burger_init.push_back(99);
+		menu_for_chick_burger_init.push_back("Crispy Chicken");   price_for_chick_burger_init.push_back(160);
+		menu_for_chick_burger_init.push_back("Chicken Paradise"); price_for_chick_burger_init.push_back(190);
 	}
 
-	void show_beef_burgers_menu() {
-		c "\n\t=======================================================================================================================\n";
+	void display_single_beef_burgers_menu() {
 		c "\n\n\t\t\t\t\t=================== Beef Burgers Menu ====================\n\n";
-		c "\n   \t\t\t\t\t\t\t\tLists\t\tPrice\n\n";
-		c "\t\t\t\t\t\t\t1. Beef Burger\t\t 120\n";
-		c "\t\t\t\t\t\t\t2. Cheese Burger\t 130\n";
-		c "\t\t\t\t\t\t\t3. Beef Bacon\t\t 140\n";
-		c "\t\t\t\t\t\t\t4. Creamy Mushroom\t 100\n";
-		c "\t\t\t\t\t\t\t5. Hawaiian Burger\t 110\n";
+		c "\n   \t\t\t\t\t\t\tLists\t\t\tPrice\n\n";
+		for (int i = 0; i < menu_for_beef_burger_init.size(); i++) {
+			cout << "\t\t\t\t\t\t" << i + 1 << ". " << menu_for_beef_burger_init.at(i) << "\t\t " << price_for_beef_burger_init.at(i) << "\n";
+		}
 		c "\n\n\t\t\t\t\t==========================================================\n\n";
-		c "\n\t=======================================================================================================================\n";
 	}
 
-	void show_chick_burgers_menu() {
-		c "\n\t=======================================================================================================================\n";
+	void display_single_chick_burgers_menu() {
 		c "\n\n\t\t\t\t\t================ Chicken Burgers Menu ====================\n\n";
-		c "\n   \t\t\t\t\t\t\t\tLists\t\tPrice\n\n";
-		c "\t\t\t\t\t\t\t1. Spicy Tandoori\t 100\n";
-		c "\t\t\t\t\t\t\t2. Spicy Buffalo\t 100\n";
-		c "\t\t\t\t\t\t\t3. BBQ Chicken\t\t  99\n";
-		c "\t\t\t\t\t\t\t4. Crispy Chicken\t 160\n";
-		c "\t\t\t\t\t\t\t5. Chicken Paradise\t 190\n";
+		c "\n   \t\t\t\t\t\t\tLists\t\t\tPrice\n\n";
+		for (int i = 0; i < menu_for_chick_burger_init.size(); i++) {
+			cout << "\t\t\t\t\t\t" << i + 1 << ". " << menu_for_chick_burger_init.at(i) << "\t\t" << price_for_chick_burger_init.at(i) << "\n";
+		}
 		c "\n\n\t\t\t\t\t==========================================================\n\n";
-		c "\n\t=======================================================================================================================\n";
 	}
+
+	void display_all_menus() {
+		display_single_beef_burgers_menu();
+		display_single_chick_burgers_menu();
+	}
+
+	void ask_what_menu() {
+		cout << "\nB. Beef Burger.\n";
+		cout << "C. Chicken Burger.\n";
+		cout << "E. Exit.\n";
+	}
+
+	void game_start() {
+		display_all_menus();
+		ask_what_menu();
+
+		char choice_what_menu;
+
+		do {
+			cout << "Please select (b, c, or e) >>>: ";
+			cin >> choice_what_menu;
+
+			// Convert input to lowercase to handle both uppercase and lowercase input
+			choice_what_menu = tolower(choice_what_menu);
+
+			if (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e') {
+				cout << "Invalid choice. Please enter 'b', 'c', or 'e'." << endl;
+			}
+
+		} while (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e');
+
+		if (tolower(choice_what_menu) == 'b') {
+			beef_burger_selected();
+		} else if (tolower(choice_what_menu) == 'c') {
+			cout << "chicken\n";
+		} else {
+			cout << "Thank you!\n";
+			exit(1);
+		}
+	}
+
+	void beef_burger_selected() {
+		display_single_beef_burgers_menu();
+
+		int choice_what_menu;
+		do {
+			// asking to select order
+			cout << "Please select (1-5) >>>: ";
+			cin >> choice_what_menu;
+
+			if (choice_what_menu < 1 || choice_what_menu > 5) {
+				cout << "Invalid choice. Please enter a number between 1 and 5." << endl;
+			}
+
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		} while (choice_what_menu < 1 || choice_what_menu > 5);
+
+		int index = --choice_what_menu;
+		string order = menu_for_beef_burger_init.at(index);
+
+		cout << "You selected " << order << "\n";
+
+		int quantity;
+		do {
+			// asking for quantity
+			cout << "How many " << order << ": ";
+			cin >> quantity;
+
+			if (cin.fail() || quantity <= 0) {
+				cout << "Invalid input. Please enter a positive integer for the quantity." << endl;
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			}
+
+		} while (cin.fail() || quantity <= 0);
+
+		// adding order
+		add_order(order, quantity);
+		cout << "Order Added\n";
+
+		// display order
+		cout << "Your Order Are.\n";
+		display_orders();
+
+		// ask user to edit
+
+
+		char edit_order;
+		do {
+			cout << "Do you want to edit? [y/n]: ";
+			cin >> edit_order;
+
+			edit_order = tolower(edit_order);
+
+			if (edit_order != 'y' && edit_order != 'n') {
+				cout << "Invalid input. Please enter 'y' or 'n'." << endl;
+			}
+
+		} while (edit_order != 'y' && edit_order != 'n');
+
+		// if user select yes
+		while (true) {
+			if (tolower(edit_order) == 'y') {
+				cout << "Editing order.\n";
+				display_orders();
+				int index;
+				do {
+				start:
+					cout << "Enter index to edit (a non-negative integer): ";
+					cin >> index;
+
+					if (cin.fail() || index < 0) {
+						cout << "Invalid input. Please enter a non-negative integer for the index." << endl;
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					}
+
+				} while (cin.fail() || index < 0);
+
+				if (index > container_order.size()) {
+					cout << "Invalid\n";
+					goto start;
+				}
+
+				if (index < container_order.size()) {
+					cout << "Invalid\n";
+					goto start;
+				}
+
+				// code here
+				index--;
+
+
+				// order again to repalce old one
+				display_all_menus();
+
+				cout << "Previous order is " << container_order.at(index) << "\n";
+				cout << "Previous quantity is " << container_quantity.at(index) << "\n";
+
+				ask_what_menu();
+
+				char choice_what_menu;
+				string order;
+				int quantity;
+
+				do {
+					cout << "Please select (b, c, or e) >>>: ";
+					cin >> choice_what_menu;
+
+					// Convert input to lowercase to handle both uppercase and lowercase input
+					choice_what_menu = tolower(choice_what_menu);
+
+					if (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e') {
+						cout << "Invalid choice. Please enter 'b', 'c', or 'e'." << endl;
+					}
+
+				} while (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e');
+
+				if (tolower(choice_what_menu) == 'b') {
+					display_single_beef_burgers_menu();
+
+					int choice_what_menu;
+					do {
+						// asking to select order
+						cout << "Please select (1-5) >>>: ";
+						cin >> choice_what_menu;
+
+						if (choice_what_menu < 1 || choice_what_menu > 5) {
+							cout << "Invalid choice. Please enter a number between 1 and 5." << endl;
+						}
+
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+					} while (choice_what_menu < 1 || choice_what_menu > 5);
+
+					int index = --choice_what_menu;
+					order = menu_for_beef_burger_init.at(index);
+
+					cout << "You selected " << order << "\n";
+
+					do {
+						// asking for quantity
+						cout << "How many " << order << ": ";
+						cin >> quantity;
+
+						if (cin.fail() || quantity <= 0) {
+							cout << "Invalid input. Please enter a positive integer for the quantity." << endl;
+							cin.clear();
+							cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						}
+
+					} while (cin.fail() || quantity <= 0);
+				} else if (tolower(choice_what_menu) == 'c') {
+					cout << "chicken\n";
+				} else {
+					cout << "Thank you!\n";
+					exit(1);
+				}
+
+				if (edit_order_by_index(index, order, quantity)) {
+					cout << "Order edited\n";
+				}
+			}
+
+			char edit_again;
+			do {
+				cout << "Do you want to edit again? [y/n]: ";
+				cin >> edit_again;
+
+				// Convert input to lowercase to handle both uppercase and lowercase input
+				edit_again = tolower(edit_again);
+
+				if (edit_again != 'y' && edit_again != 'n') {
+					cout << "Invalid input. Please enter 'y' or 'n'." << endl;
+				}
+
+			} while (edit_again != 'y' && edit_again != 'n');
+
+			// The user has entered a valid choice
+			if (!(edit_again == 'y')) {
+				break;
+			}
+		}
+
+
+	}
+
+	bool edit_order_by_index(int index, string new_order, int new_quantity) {
+		container_order.at(index) = new_order;
+		container_quantity.at(index) = new_quantity;
+		return true;
+	}
+
+
+	// adding order
+	void add_order(string order, int quantity) {
+		container_order.push_back(order);
+		container_quantity.push_back(quantity);
+	}
+
+	// display order
+	void display_orders() {
+		cout << "Index\t\t\tOrder\t\t\t\tQuantity\n";
+		for (int i = 0; i < container_order.size(); i++) {
+			cout << (i + 1) << ".\t\t\t" << container_order.at(i) << "\t\t\t" << container_quantity.at(i);
+		}
+		cout << "\n";
+	}
+
 
 	string get_current_date_and_time() {
 		// Get the current time
@@ -95,6 +343,7 @@ public:
 int main() {
 	Burger_POS _burger;
 
+	_burger.game_start();
 
 	return 0;
 }
