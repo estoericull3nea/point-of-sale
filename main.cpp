@@ -539,6 +539,28 @@ public:
 		}
 	}
 
+	void ask_to_order_again() {
+		char order_again;
+		do {
+			cout << "Do you want to order again? [y/n]: ";
+			cin >> order_again;
+
+			order_again = tolower(order_again); // Convert the input to lowercase for case-insensitive comparison
+
+			if (order_again != 'y' && order_again != 'n') {
+				cout << "Invalid input. Please enter 'y' for yes or 'n' for no." << endl;
+			}
+
+		} while (order_again != 'y' && order_again != 'n');
+		// after validation
+
+		if(order_again == 'y') {
+			game_start();
+		} else {
+			cout << "Not order again\n";
+		}
+	}
+
 	bool edit_order_by_index(int index, string new_order, int new_quantity) {
 		container_order.at(index) = new_order;
 		container_quantity.at(index) = new_quantity;
