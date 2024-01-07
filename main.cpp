@@ -92,6 +92,7 @@ public:
 
 		if (tolower(choice_what_menu) == 'b') {
 			beef_burger_selected();
+			ask_to_order_again();
 		} else if (tolower(choice_what_menu) == 'c') {
 			chick_burger_selected();
 		} else {
@@ -296,6 +297,8 @@ public:
 				if (edit_order_by_index(index, order, quantity)) {
 					cout << "Order edited\n";
 				}
+			} else {
+				break;
 			}
 
 			char edit_again;
@@ -516,6 +519,8 @@ public:
 				if (edit_order_by_index(index, order, quantity)) {
 					cout << "Order edited\n";
 				}
+			} else {
+				break;
 			}
 
 			char edit_again;
