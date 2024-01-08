@@ -28,6 +28,8 @@ public:
 	vector<int> container_quantity;
 	vector<int> container_price;
 
+	int discounted = 0;
+
 	// constructor
 	Burger_POS() {
 		menu_for_beef_burger_init.push_back("Beef Burger"); 	 price_for_beef_burger_init.push_back(120);
@@ -99,6 +101,8 @@ public:
 			cout << "Thank you!\n";
 			exit(1);
 		}
+
+		// after populating orders
 
 		cout << "Total is: " << get_total() << "\n";
 		ask_to_order_again();
@@ -616,6 +620,18 @@ public:
 			}
 		}
 		// after validation
+
+		if(is_senior(age)) {
+			cout << "You are senior\n";
+		}
+
+	}
+
+	bool is_senior(int age) {
+		if(age >= 60) {
+			return true;
+		}
+		return false;
 	}
 
 	int get_total() {
