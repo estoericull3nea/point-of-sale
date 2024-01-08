@@ -26,6 +26,7 @@ public:
 	// store order
 	vector<string> container_order;
 	vector<int> container_quantity;
+	vector<int> container_price;
 
 	// constructor
 	Burger_POS() {
@@ -92,15 +93,20 @@ public:
 
 		if (tolower(choice_what_menu) == 'b') {
 			beef_burger_selected();
-			ask_to_order_again();
 		} else if (tolower(choice_what_menu) == 'c') {
 			chick_burger_selected();
 		} else {
 			cout << "Thank you!\n";
 			exit(1);
 		}
+
+		cout << "Total is: " << get_total() << "\n";
+		ask_to_order_again();
+		cout << "Total is: " << get_total() << "\n";
+		age_computation();
 	}
 
+	// code here
 	void beef_burger_selected() {
 		display_single_beef_burgers_menu(); // display beef
 
@@ -140,7 +146,8 @@ public:
 		// after validation
 
 		// adding order
-		add_order(order, quantity);
+		int price = price_for_beef_burger_init.at(index);
+		add_order(order, quantity, price);
 		cout << "Order Added\n";
 
 		// display order
@@ -361,7 +368,8 @@ public:
 		// after validation
 
 		// adding order
-		add_order(order, quantity);
+		int price = price_for_chick_burger_init.at(index);
+		add_order(order, quantity, price);
 		cout << "Order Added\n";
 
 		// display order
@@ -545,6 +553,8 @@ public:
 	}
 
 	void ask_to_order_again() {
+		cout << "Order(s) are.\n";
+		display_orders();
 		char order_again;
 		do {
 			cout << "Do you want to order again? [y/n]: ";
@@ -559,7 +569,7 @@ public:
 		} while (order_again != 'y' && order_again != 'n');
 		// after validation
 
-		if(order_again == 'y') {
+		if (order_again == 'y') {
 			game_start();
 		} else {
 			cout << "Not order again\n";
@@ -573,20 +583,49 @@ public:
 	}
 
 	// adding order
-	void add_order(string order, int quantity) {
+	void add_order(string order, int quantity, int price) {
 		container_order.push_back(order);
 		container_quantity.push_back(quantity);
+		container_price.push_back(price);
 	}
 
 	// display order
 	void display_orders() {
-		cout << "Index\t\t\tOrder\t\t\t\tQuantity\n";
+		cout << "Index\t\t\tOrder\t\t\t\tQuantity\t\t\tSubtotal\n";
 		for (int i = 0; i < container_order.size(); i++) {
-			cout << (i + 1) << ".\t\t\t" << container_order.at(i) << "\t\t\t" << container_quantity.at(i);
+			cout << (i + 1) << ".\t\t\t" << container_order.at(i) << "\t\t\t" << container_quantity.at(i) << " x " << container_price.at(i) << "\t\t\t\t" << (container_quantity.at(i) * container_price.at(i)) << "\n";
 		}
 		cout << "\n";
 	}
 
+	void age_computation() {
+		int age;
+
+		// Prompt user for age until a valid input is provided
+		while (true) {
+			cout << "Enter your age: ";
+			cin >> age;
+
+			// Check if the input is a positive integer
+			if (cin.fail() || age < 0) {
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "Invalid input. Please enter a non-negative integer for age." << endl;
+			} else {
+				break;
+			}
+		}
+		// after validation
+	}
+
+	int get_total() {
+
+		int total = 0;
+		for (int i = 0;i < container_order.size();i++) {
+			total += (container_quantity.at(i) * container_price.at(i));
+		}
+		return total;
+	}
 
 	string get_current_date_and_time() {
 		// Get the current time
