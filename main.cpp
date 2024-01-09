@@ -621,14 +621,132 @@ public:
 		}
 		// after validation
 
-		if(is_senior(age)) {
+		int discounted = 0;
+		if (is_senior(age)) {
 			cout << "You are senior\n";
+			discounted = discount_calculation(get_total());
+			cout << "Total now is " << discounted << "\n";
+		} else {
+			cout << "not senior\n";
+			discounted = get_total();
+			cout << "Total is " << discounted << "\n";
 		}
+		// call payment function
+		payment_method(discounted);
+	}
 
+	void payment_method(int overall_total) {
+		int payment;
+		do {
+			cout << "Enter payment: ";
+			if (!(cin >> payment)) {
+
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "\n\t\t===============================================================" << endl;
+				cout << "\t\t   Invalid input. Please enter a valid non-negative integer." << endl;
+				cout << "\t\t===============================================================\n" << endl;
+			} else if (payment <= 0) {
+				cout << "\n\t\t===============================================================" << endl;
+				cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+				cout << "\t\t===============================================================\n" << endl;
+			} else {
+				break;
+			}
+		} while (true);
+
+		if (payment == overall_total) {
+
+			c "Thank you Come Again!\n";
+			exit(1);
+		} else if (payment > overall_total) {
+			int p = payment - overall_total;
+
+			c "Here is your change: " << p << "\n";
+			c "Thank you Come Again!\n";
+			exit(1);
+		} else if (payment < overall_total) {
+			char add_more;
+			int add_money;
+			cout << "\n\t\t==============================================" << endl;
+			cout << "\t\t\tPlease add more " << overall_total - payment << " to pay this!\n";
+			cout << "\t\t==============================================\n" << endl;
+
+			while (overall_total > payment) {
+
+				do {
+					cout << "\nDo you want to add more? [y/n]: ";
+					if (!(cin >> add_more) || (add_more != 'y' && add_more != 'n')) {
+
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << "\n\t\t=======================================================" << endl;
+						cout << "\t\t\tInvalid input. Please enter 'y' or 'n'." << endl;
+						cout << "\t\t=======================================================\n" << endl;
+					} else {
+
+						break;
+					}
+				} while (true);
+
+				if (add_more == 'y' || add_more == 'Y') {
+					do {
+						cout << "\nAdd Money: ";
+						if (!(cin >> add_money)) {
+
+							cin.clear();
+							cin.ignore(numeric_limits<streamsize>::max(), '\n');
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t   Invalid input. Please enter a valid non-negative integer." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else if (add_money <= 0) {
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else {
+
+							break;
+						}
+					} while (true);
+
+					cout << "You entered additional money: " << add_money << "\n";
+					if (add_money <= 0) {
+						cout << "\nInvalid Input of Money\n";
+					} else {
+						add_money += payment;
+						payment = add_money;
+						if (payment < overall_total) {
+
+							cout << "\n\t\t==============================================" << endl;
+							cout << "\t\t\tPlease Add more " << overall_total - payment << " to pay this!\n";
+							cout << "\t\t==============================================\n" << endl;
+
+						} else if (payment == overall_total) {
+
+							cout << "\nExact Amount, No Change\n";
+							c "Thank you Come Again!\n";
+							exit(1);
+						} else if (payment > overall_total) {
+
+							cout << "\nHere is your change " << payment - overall_total << " Thank you for coming and ordering!\n";
+							exit(1);
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+
+	int discount_calculation(int total) {
+		float percent_of_discount = .9;
+		int discounted_total = total * percent_of_discount;
+		return discounted_total;
 	}
 
 	bool is_senior(int age) {
-		if(age >= 60) {
+		if (age >= 60) {
 			return true;
 		}
 		return false;
