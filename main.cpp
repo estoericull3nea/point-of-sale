@@ -151,7 +151,6 @@ public:
 		order = menu_for_beef_burger_init.at(index);
 		cout << "You selected " << order << "\n";
 
-		int quantity;
 		do {
 			// asking for quantity
 			cout << "How many " << order << ": ";
