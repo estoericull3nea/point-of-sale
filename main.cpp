@@ -20,15 +20,18 @@ public:
 
 	vector<int> price_for_beef_burger_init;
 	vector<int> price_for_chick_burger_init;
-
-	vector<string> container_date_time;
+	// -------
 
 	// store order
 	vector<string> container_order;
+	vector<string> container_date_time;
 	vector<int> container_quantity;
 	vector<int> container_price;
+	// -------
 
+	// global variable
 	int discounted = 0;
+	// -------
 
 	// constructor
 	Burger_POS() {
@@ -45,7 +48,7 @@ public:
 		menu_for_chick_burger_init.push_back("Chicken Paradise"); price_for_chick_burger_init.push_back(190);
 	}
 
-	// single menu
+	// single menu (beef)
 	void display_single_beef_burgers_menu() {
 		c "\n\n\t\t\t\t\t=================== Beef Burgers Menu ====================\n\n";
 		c "\n   \t\t\t\t\t\t\tLists\t\t\tPrice\n\n";
@@ -55,7 +58,7 @@ public:
 		c "\n\n\t\t\t\t\t==========================================================\n\n";
 	}
 
-	// single menu
+	// single menu (chick)
 	void display_single_chick_burgers_menu() {
 		c "\n\n\t\t\t\t\t================ Chicken Burgers Menu ====================\n\n";
 		c "\n   \t\t\t\t\t\t\tLists\t\t\tPrice\n\n";
@@ -65,7 +68,7 @@ public:
 		c "\n\n\t\t\t\t\t==========================================================\n\n";
 	}
 
-	// all menu
+	// all menu (beef & chick)
 	void display_all_menus() {
 		display_single_beef_burgers_menu();
 		display_single_chick_burgers_menu();
@@ -80,24 +83,27 @@ public:
 
 	// starting point of this system
 	void game_start() {
-		display_all_menus();
-		ask_what_menu();
-
+		// local variables
 		char choice_what_menu;
+		// -------
+
+		display_all_menus(); // display both menu
+		ask_what_menu(); // select in two menu
 
 		do {
 			cout << "Please select (b, c, or e) >>>: ";
 			cin >> choice_what_menu;
 
-			// Convert input to lowercase to handle both uppercase and lowercase input
-			choice_what_menu = tolower(choice_what_menu);
+			choice_what_menu = tolower(choice_what_menu); // convert to lowercase
 
 			if (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e') {
 				cout << "Invalid choice. Please enter 'b', 'c', or 'e'." << endl;
 			}
 
 		} while (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e');
+		// after validation for "Please select (b, c, or e) >>>: "
 
+		// conditional statement
 		if (tolower(choice_what_menu) == 'b') {
 			beef_burger_selected();
 		} else if (tolower(choice_what_menu) == 'c') {
@@ -106,20 +112,26 @@ public:
 			cout << "Thank you!\n";
 			exit(1);
 		}
+		// -------
 
 		// after populating orders
-
 		cout << "Total is: " << get_total() << "\n";
-		ask_to_order_again();
+		ask_to_order_again(); // asking to order again
 		cout << "Total is: " << get_total() << "\n";
-		age_computation();
+		age_computation(); // compute the age
+		// -------
 	}
 
 	// if beef
 	void beef_burger_selected() {
+		// local variables
+		int choice_what_menu, index, price, quantity;
+		string order;
+		char edit_order, edit_again;
+		// -------
+
 		display_single_beef_burgers_menu(); // display beef
 
-		int choice_what_menu;
 		do {
 			// asking to select order
 			cout << "Please select (1-5) >>>: ";
@@ -135,8 +147,8 @@ public:
 		} while (choice_what_menu < 1 || choice_what_menu > 5);
 		// after validation
 
-		int index = --choice_what_menu;
-		string order = menu_for_beef_burger_init.at(index);
+		index = --choice_what_menu;
+		order = menu_for_beef_burger_init.at(index);
 		cout << "You selected " << order << "\n";
 
 		int quantity;
@@ -155,16 +167,19 @@ public:
 		// after validation
 
 		// adding order
-		int price = price_for_beef_burger_init.at(index);
-		add_order(order, quantity, price);
-		cout << "Order Added\n";
+		price = price_for_beef_burger_init.at(index);
+		if (add_order(order, quantity, price)) {
+			cout << "Order Added\n";
+
+		} else {
+			cout << "Something went wrong.\n";
+		}
 
 		// display order
 		cout << "Your Order Are.\n";
 		display_orders();
 
 		// ask user to edit
-		char edit_order;
 		do {
 			cout << "Do you want to edit? [y/n]: ";
 			cin >> edit_order;
@@ -216,9 +231,6 @@ public:
 
 				ask_what_menu();
 
-				char choice_what_menu;
-				string order;
-				int quantity;
 
 				do {
 					cout << "Please select (b, c, or e) >>>: ";
@@ -289,7 +301,7 @@ public:
 					} while (choice_what_menu < 1 || choice_what_menu > 5);
 					// after validation
 
-					int index = --choice_what_menu;
+					index = --choice_what_menu;
 					order = menu_for_chick_burger_init.at(index);
 					cout << "You selected " << order << "\n";
 
@@ -313,7 +325,6 @@ public:
 				break;
 			}
 
-			char edit_again;
 			do {
 				cout << "Do you want to edit again? [y/n]: ";
 				cin >> edit_again;
@@ -336,9 +347,14 @@ public:
 
 	// if chicken
 	void chick_burger_selected() {
+		// variables
+		int choice_what_menu, index, quantity, price;
+		string order;
+		char edit_order, edit_again;
+		// -------
+
 		display_single_chick_burgers_menu(); // display chick
 
-		int choice_what_menu;
 		do {
 			// asking to select order
 			cout << "Please select (1-5) >>>: ";
@@ -354,11 +370,10 @@ public:
 		} while (choice_what_menu < 1 || choice_what_menu > 5);
 		// after validation
 
-		int index = --choice_what_menu;
-		string order = menu_for_chick_burger_init.at(index);
+		index = --choice_what_menu;
+		order = menu_for_chick_burger_init.at(index);
 		cout << "You selected " << order << "\n";
 
-		int quantity;
 		do {
 			// asking for quantity
 			cout << "How many " << order << ": ";
@@ -374,16 +389,18 @@ public:
 		// after validation
 
 		// adding order
-		int price = price_for_chick_burger_init.at(index);
-		add_order(order, quantity, price);
-		cout << "Order Added\n";
+		price = price_for_chick_burger_init.at(index);
+		if (add_order(order, quantity, price)) {
+			cout << "Order Added\n";
+		} else {
+			cout << "Something went wrong.\n";
+		}
 
 		// display order
 		cout << "Your Order Are.\n";
 		display_orders();
 
 		// ask user to edit
-		char edit_order;
 		do {
 			cout << "Do you want to edit? [y/n]: ";
 			cin >> edit_order;
@@ -436,10 +453,6 @@ public:
 
 				ask_what_menu();
 
-				char choice_what_menu;
-				string order;
-				int quantity;
-
 				do {
 					cout << "Please select (b, c, or e) >>>: ";
 					cin >> choice_what_menu;
@@ -457,7 +470,6 @@ public:
 				if (tolower(choice_what_menu) == 'b') { // beef burger
 					display_single_beef_burgers_menu();
 
-					int choice_what_menu;
 					do {
 						// asking to select order
 						cout << "Please select (1-5) >>>: ";
@@ -473,7 +485,7 @@ public:
 					} while (choice_what_menu < 1 || choice_what_menu > 5);
 					// after validation
 
-					int index = --choice_what_menu;
+					index = --choice_what_menu;
 					order = menu_for_beef_burger_init.at(index);
 					cout << "You selected " << order << "\n";
 
@@ -493,7 +505,6 @@ public:
 				} else if (tolower(choice_what_menu) == 'c') { // chicken burger
 					display_single_chick_burgers_menu();
 
-					int choice_what_menu;
 					do {
 						// asking to select order
 						cout << "Please select (1-5) >>>: ";
@@ -509,7 +520,7 @@ public:
 					} while (choice_what_menu < 1 || choice_what_menu > 5);
 					// after validation
 
-					int index = --choice_what_menu;
+					index = --choice_what_menu;
 					order = menu_for_chick_burger_init.at(index);
 					cout << "You selected " << order << "\n";
 
@@ -532,7 +543,6 @@ public:
 			} else {
 				break;
 			}
-			char edit_again;
 			do {
 				cout << "Do you want to edit again? [y/n]: ";
 				cin >> edit_again;
@@ -555,9 +565,12 @@ public:
 
 	// order again
 	void ask_to_order_again() {
+		// variables
+		char order_again;
+		// -------
+
 		cout << "Order(s) are.\n";
 		display_orders();
-		char order_again;
 		do {
 			cout << "Do you want to order again? [y/n]: ";
 			cin >> order_again;
@@ -578,11 +591,17 @@ public:
 		}
 	}
 
-	// adding order
-	void add_order(string order, int quantity, int price) {
-		container_order.push_back(order);
-		container_quantity.push_back(quantity);
-		container_price.push_back(price);
+	// adding order (true if success)
+	bool add_order(string order, int quantity, int price) {
+		if (order, quantity, price) {
+
+			container_order.push_back(order);
+			container_quantity.push_back(quantity);
+			container_price.push_back(price);
+
+			return true;
+		}
+		return false;
 	}
 
 	// display order
@@ -596,7 +615,9 @@ public:
 
 	// computation of age
 	void age_computation() {
-		int age;
+		// variables
+		int age, discounted;
+		// -------
 
 		// Prompt user for age until a valid input is provided
 		while (true) {
@@ -614,7 +635,6 @@ public:
 		}
 		// after validation
 
-		int discounted = 0;
 		if (is_senior(age)) {
 			cout << "You are senior\n";
 			discounted = discount_calculation(get_total());
@@ -626,14 +646,14 @@ public:
 		}
 	}
 
-	// returning calculated discount
+	// returning calculated discount (int)
 	int discount_calculation(int total) {
 		float percent_of_discount = .9;
 		int discounted_total = total * percent_of_discount;
 		return discounted_total;
 	}
 
-	// checking if senior
+	// checking if senior (true of senior)
 	bool is_senior(int age) {
 		if (age >= 60) {
 			return true;
@@ -641,7 +661,7 @@ public:
 		return false;
 	}
 
-	// get overall total
+	// get overall total (int)
 	int get_total() {
 
 		int total = 0;
@@ -651,7 +671,7 @@ public:
 		return total;
 	}
 
-	// returning date and time
+	// returning date and time (string)
 	string get_current_date_and_time() {
 		// Get the current time
 		auto currentTime = chrono::system_clock::now();
