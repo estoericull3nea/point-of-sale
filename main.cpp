@@ -237,31 +237,69 @@ public:
 	}
 
 	// order again
-	void ask_to_order_again() {
-		// variables
-		char order_again;
-		// -------
+	bool ask_to_order_again() {
+		while (true) {
 
-		cout << "Order(s) are.\n";
-		display_orders();
-		do {
-			cout << "Do you want to order again? [y/n]: ";
-			cin >> order_again;
+			// variables
+			char order_again;
+			// -------
 
-			order_again = tolower(order_again); // Convert the input to lowercase for case-insensitive comparison
+			cout << "Order(s) are.\n";
+			display_orders();
+			do {
+				cout << "Do you want to order again? [y/n]: ";
+				cin >> order_again;
 
-			if (order_again != 'y' && order_again != 'n') {
-				cout << "Invalid input. Please enter 'y' for yes or 'n' for no." << endl;
+				order_again = tolower(order_again); // Convert the input to lowercase for case-insensitive comparison
+
+				if (order_again != 'y' && order_again != 'n') {
+					cout << "Invalid input. Please enter 'y' for yes or 'n' for no." << endl;
+				}
+
+			} while (order_again != 'y' && order_again != 'n');
+			// after validation
+
+			if (order_again == 'y') {
+
+				// local variables
+				char choice_what_menu;
+				// -------
+
+				display_all_menus(); // display both menu
+				ask_what_menu(); // select in two menu
+
+				do {
+					cout << "Please select (b, c, or e) >>>: ";
+					cin >> choice_what_menu;
+
+					choice_what_menu = tolower(choice_what_menu); // convert to lowercase
+
+					if (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e') {
+						cout << "Invalid choice. Please enter 'b', 'c', or 'e'." << endl;
+					}
+
+				} while (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e');
+				// after validation for "Please select (b, c, or e) >>>: "
+
+				// conditional statement
+				if (tolower(choice_what_menu) == 'b') {
+					beef_burger_selected();
+				} else if (tolower(choice_what_menu) == 'c') {
+					chick_burger_selected();
+				} else {
+					cout << "Thank you!\n";
+					exit(1);
+				}
+				// -------
+
+			} else {
+				cout << "Not order again\n";
+				return true;
 			}
-
-		} while (order_again != 'y' && order_again != 'n');
-		// after validation
-
-		if (order_again == 'y') {
-			game_start();
-		} else {
-			cout << "Not order again\n";
 		}
+
+		return false;
+
 	}
 
 	// adding order (true if success)
@@ -385,7 +423,6 @@ public:
 
 						container_order.at(index) = new_order;
 						container_price.at(index) = change_price;
-						display_orders();
 						// done
 					} else if (tolower(choice_what_menu) == 'c') {
 						display_single_chick_burgers_menu();
