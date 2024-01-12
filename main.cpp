@@ -118,7 +118,8 @@ public:
 		cout << "Total is: " << get_total() << "\n";
 		ask_to_order_again(); // asking to order again
 		cout << "Total is: " << get_total() << "\n";
-		age_computation(); // compute the age
+		// age_computation(); // compute the age
+		update_order();
 		// -------
 	}
 
@@ -177,171 +178,6 @@ public:
 		// display order
 		cout << "Your Order Are.\n";
 		display_orders();
-
-		// ask user to edit
-		do {
-			cout << "Do you want to edit? [y/n]: ";
-			cin >> edit_order;
-
-			edit_order = tolower(edit_order);
-
-			if (edit_order != 'y' && edit_order != 'n') {
-				cout << "Invalid input. Please enter 'y' or 'n'." << endl;
-			}
-
-		} while (edit_order != 'y' && edit_order != 'n');
-
-		// if user select yes
-		while (true) {
-			if (tolower(edit_order) == 'y') {
-				cout << "Editing order.\n";
-				display_orders();
-				int index;
-				do {
-				start:
-					cout << "Enter index to edit (a non-negative integer): ";
-					cin >> index;
-
-					if (cin.fail() || index < 0) {
-						cout << "Invalid input. Please enter a non-negative integer for the index." << endl;
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-					}
-
-				} while (cin.fail() || index < 0);
-
-				if (index > container_order.size()) {
-					cout << "Invalid\n";
-					goto start;
-				}
-
-				if (index < container_order.size()) {
-					cout << "Invalid\n";
-					goto start;
-				}
-				// after validation
-
-				index--;
-				// order again to repalce old one
-				display_all_menus();
-
-				cout << "Previous order is " << container_order.at(index) << "\n";
-				cout << "Previous quantity is " << container_quantity.at(index) << "\n";
-
-				ask_what_menu();
-
-
-				do {
-					cout << "Please select (b, c, or e) >>>: ";
-					cin >> choice_what_menu;
-
-					// Convert input to lowercase to handle both uppercase and lowercase input
-					choice_what_menu = tolower(choice_what_menu);
-
-					if (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e') {
-						cout << "Invalid choice. Please enter 'b', 'c', or 'e'." << endl;
-					}
-
-				} while (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e');
-				// after validation
-
-				if (tolower(choice_what_menu) == 'b') { // beef burger
-					display_single_beef_burgers_menu();
-
-					int choice_what_menu;
-					do {
-						// asking to select order
-						cout << "Please select (1-5) >>>: ";
-						cin >> choice_what_menu;
-
-						if (choice_what_menu < 1 || choice_what_menu > 5) {
-							cout << "Invalid choice. Please enter a number between 1 and 5." << endl;
-						}
-
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-					} while (choice_what_menu < 1 || choice_what_menu > 5);
-					// after validation
-
-					int index = --choice_what_menu;
-					order = menu_for_beef_burger_init.at(index);
-					cout << "You selected " << order << "\n";
-
-					do {
-						// asking for quantity
-						cout << "How many " << order << ": ";
-						cin >> quantity;
-
-						if (cin.fail() || quantity <= 0) {
-							cout << "Invalid input. Please enter a positive integer for the quantity." << endl;
-							cin.clear();
-							cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						}
-
-					} while (cin.fail() || quantity <= 0);
-					// after validation
-				} else if (tolower(choice_what_menu) == 'c') { // chicken burger
-					display_single_chick_burgers_menu();
-
-					int choice_what_menu;
-					do {
-						// asking to select order
-						cout << "Please select (1-5) >>>: ";
-						cin >> choice_what_menu;
-
-						if (choice_what_menu < 1 || choice_what_menu > 5) {
-							cout << "Invalid choice. Please enter a number between 1 and 5." << endl;
-						}
-
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-					} while (choice_what_menu < 1 || choice_what_menu > 5);
-					// after validation
-
-					index = --choice_what_menu;
-					order = menu_for_chick_burger_init.at(index);
-					cout << "You selected " << order << "\n";
-
-					do {
-						// asking for quantity
-						cout << "How many " << order << ": ";
-						cin >> quantity;
-
-						if (cin.fail() || quantity <= 0) {
-							cout << "Invalid input. Please enter a positive integer for the quantity." << endl;
-							cin.clear();
-							cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						}
-
-					} while (cin.fail() || quantity <= 0);
-				} else {
-					cout << "Thank you!\n";
-					exit(1);
-				}
-			} else {
-				break;
-			}
-
-			do {
-				cout << "Do you want to edit again? [y/n]: ";
-				cin >> edit_again;
-
-				// Convert input to lowercase to handle both uppercase and lowercase input
-				edit_again = tolower(edit_again);
-
-				if (edit_again != 'y' && edit_again != 'n') {
-					cout << "Invalid input. Please enter 'y' or 'n'." << endl;
-				}
-
-			} while (edit_again != 'y' && edit_again != 'n');
-
-			// The user has entered a valid choice
-			if (!(edit_again == 'y')) {
-				break;
-			}
-		}
 	}
 
 	// if chicken
@@ -398,168 +234,6 @@ public:
 		// display order
 		cout << "Your Order Are.\n";
 		display_orders();
-
-		// ask user to edit
-		do {
-			cout << "Do you want to edit? [y/n]: ";
-			cin >> edit_order;
-
-			edit_order = tolower(edit_order);
-
-			if (edit_order != 'y' && edit_order != 'n') {
-				cout << "Invalid input. Please enter 'y' or 'n'." << endl;
-			}
-
-		} while (edit_order != 'y' && edit_order != 'n');
-		// after validation
-
-		// if user select yes
-		while (true) {
-			if (tolower(edit_order) == 'y') {
-				cout << "Editing order.\n";
-				display_orders();
-				int index;
-				do {
-				start:
-					cout << "Enter index to edit (a non-negative integer): ";
-					cin >> index;
-
-					if (cin.fail() || index < 0) {
-						cout << "Invalid input. Please enter a non-negative integer for the index." << endl;
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-					}
-
-				} while (cin.fail() || index < 0);
-
-				if (index > container_order.size()) {
-					cout << "Invalid\n";
-					goto start;
-				}
-
-				if (index < container_order.size()) {
-					cout << "Invalid\n";
-					goto start;
-				}
-				// after validation
-
-				index--;
-				// order again to repalce old one
-				display_all_menus();
-
-				cout << "Previous order is " << container_order.at(index) << "\n";
-				cout << "Previous quantity is " << container_quantity.at(index) << "\n";
-
-				ask_what_menu();
-
-				do {
-					cout << "Please select (b, c, or e) >>>: ";
-					cin >> choice_what_menu;
-
-					// Convert input to lowercase to handle both uppercase and lowercase input
-					choice_what_menu = tolower(choice_what_menu);
-
-					if (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e') {
-						cout << "Invalid choice. Please enter 'b', 'c', or 'e'." << endl;
-					}
-
-				} while (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e');
-				// after validation
-
-				if (tolower(choice_what_menu) == 'b') { // beef burger
-					display_single_beef_burgers_menu();
-
-					do {
-						// asking to select order
-						cout << "Please select (1-5) >>>: ";
-						cin >> choice_what_menu;
-
-						if (choice_what_menu < 1 || choice_what_menu > 5) {
-							cout << "Invalid choice. Please enter a number between 1 and 5." << endl;
-						}
-
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-					} while (choice_what_menu < 1 || choice_what_menu > 5);
-					// after validation
-
-					index = --choice_what_menu;
-					order = menu_for_beef_burger_init.at(index);
-					cout << "You selected " << order << "\n";
-
-					do {
-						// asking for quantity
-						cout << "How many " << order << ": ";
-						cin >> quantity;
-
-						if (cin.fail() || quantity <= 0) {
-							cout << "Invalid input. Please enter a positive integer for the quantity." << endl;
-							cin.clear();
-							cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						}
-
-					} while (cin.fail() || quantity <= 0);
-					// after validation
-				} else if (tolower(choice_what_menu) == 'c') { // chicken burger
-					display_single_chick_burgers_menu();
-
-					do {
-						// asking to select order
-						cout << "Please select (1-5) >>>: ";
-						cin >> choice_what_menu;
-
-						if (choice_what_menu < 1 || choice_what_menu > 5) {
-							cout << "Invalid choice. Please enter a number between 1 and 5." << endl;
-						}
-
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-					} while (choice_what_menu < 1 || choice_what_menu > 5);
-					// after validation
-
-					index = --choice_what_menu;
-					order = menu_for_chick_burger_init.at(index);
-					cout << "You selected " << order << "\n";
-
-					do {
-						// asking for quantity
-						cout << "How many " << order << ": ";
-						cin >> quantity;
-
-						if (cin.fail() || quantity <= 0) {
-							cout << "Invalid input. Please enter a positive integer for the quantity." << endl;
-							cin.clear();
-							cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						}
-
-					} while (cin.fail() || quantity <= 0);
-				} else {
-					cout << "Thank you!\n";
-					exit(1);
-				}
-			} else {
-				break;
-			}
-			do {
-				cout << "Do you want to edit again? [y/n]: ";
-				cin >> edit_again;
-
-				// Convert input to lowercase to handle both uppercase and lowercase input
-				edit_again = tolower(edit_again);
-
-				if (edit_again != 'y' && edit_again != 'n') {
-					cout << "Invalid input. Please enter 'y' or 'n'." << endl;
-				}
-
-			} while (edit_again != 'y' && edit_again != 'n');
-
-			// The user has entered a valid choice
-			if (!(edit_again == 'y')) {
-				break;
-			}
-		}
 	}
 
 	// order again
@@ -603,13 +277,188 @@ public:
 		return false;
 	}
 
+	// update order
+	bool update_order() {
+
+		while (true) {
+
+
+			char edit_order;
+			int index, choice;
+			do {
+				display_orders();
+				cout << "Do you want to edit your order? [y/n]: ";
+				cin >> edit_order;
+
+				if (edit_order != 'y' && edit_order != 'n') {
+					cout << "Invalid input. Please enter 'y' for Yes or 'n' for No." << endl;
+				}
+
+			} while (edit_order != 'y' && edit_order != 'n');
+			// after validation
+
+			if (tolower(edit_order) == 'y') {
+				cout << "Editing\n";
+
+				do {
+					// asking to select order
+					display_orders();
+					cout << "Please select index to edit: ";
+					cin >> index;
+
+					if (index < 1 || index > container_order.size()) {
+						cout << "Invalid choice. Please enter a valid number." << endl;
+					}
+
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				} while (index < 1 || index > container_order.size());
+
+				index--;
+
+				// options
+				cout << "Options.\n";
+				cout << "1. Order.\n";
+				cout << "2. Quantity.\n";
+
+				do {
+					cout << "Enter choice (1 or 2): ";
+
+					if (cin >> choice && (choice == 1 || choice == 2)) {
+						break;
+					} else {
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << "Invalid input. Please enter either 1 or 2." << endl;
+					}
+
+				} while (true);
+
+				if (choice == 1) {
+					cout << "Editing order.\n";
+					cout << container_order.at(index) << " is selected.\n";
+
+					// local variables
+					char choice_what_menu;
+					// -------
+
+					display_all_menus(); // display both menu
+					ask_what_menu(); // select in two menu
+
+					do {
+						cout << "Please select (b, c, or e) >>>: ";
+						cin >> choice_what_menu;
+
+						choice_what_menu = tolower(choice_what_menu); // convert to lowercase
+
+						if (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e') {
+							cout << "Invalid choice. Please enter 'b', 'c', or 'e'." << endl;
+						}
+
+					} while (choice_what_menu != 'b' && choice_what_menu != 'c' && choice_what_menu != 'e');
+					// after validation for "Please select (b, c, or e) >>>: "
+
+					// conditional statement
+					if (tolower(choice_what_menu) == 'b') {
+						display_single_beef_burgers_menu();
+
+						int picking_order;
+						do {
+							cout << "Select order (1-5): ";
+
+							if (cin >> picking_order && picking_order >= 1 && picking_order <= 5) {
+								break;
+							} else {
+								cin.clear();
+								cin.ignore(numeric_limits<streamsize>::max(), '\n');
+								cout << "Invalid input. Please enter a valid integer between 1 and 5." << endl;
+							}
+
+						} while (true);
+
+						string new_order = menu_for_beef_burger_init.at(picking_order - 1);
+						int change_price = price_for_beef_burger_init.at(picking_order - 1);
+
+						cout << "Order edited\n";
+						cout << "New order is " << new_order << "\n";
+
+						container_order.at(index) = new_order;
+						container_price.at(index) = change_price;
+						display_orders();
+						// done
+					} else if (tolower(choice_what_menu) == 'c') {
+						display_single_chick_burgers_menu();
+
+						int picking_order;
+						do {
+							cout << "Select order (1-5): ";
+
+							if (cin >> picking_order && picking_order >= 1 && picking_order <= 5) {
+								break;
+							} else {
+								cin.clear();
+								cin.ignore(numeric_limits<streamsize>::max(), '\n');
+								cout << "Invalid input. Please enter a valid integer between 1 and 5." << endl;
+							}
+
+						} while (true);
+
+						string new_order = menu_for_chick_burger_init.at(picking_order - 1);
+						int change_price = price_for_chick_burger_init.at(picking_order - 1);
+
+						cout << "Order edited\n";
+						cout << "New order is " << new_order << "\n";
+
+						container_order.at(index) = new_order;
+						container_price.at(index) = change_price;
+
+						// done
+					} else {
+						cout << "Thank you!\n";
+						exit(1);
+					}
+					// -------
+
+
+				} else if (choice == 2) {
+					int old_quantity = container_quantity.at(index), new_quantity;
+					cout << "Editing quantity.\n";
+					cout << "Quantity of " << container_order.at(index) << " is " << old_quantity << "\n";
+
+					do {
+						cout << "Enter new quantity: ";
+						if (cin >> new_quantity && new_quantity > 0) {
+							break;
+						} else {
+							cin.clear();
+							cin.ignore(numeric_limits<streamsize>::max(), '\n');
+							cout << "Invalid input. Please enter a valid positive integer." << endl;
+						}
+
+					} while (true);
+
+					container_quantity.at(index) = new_quantity;
+					cout << "Quantity edited.\n";
+					// done
+				}
+
+			} else {
+				cout << "Not\n";
+				return true;
+			}
+		}
+
+
+		return false;
+	}
+
 	// display order
 	void display_orders() {
 		cout << "Index\t\t\tOrder\t\t\t\tQuantity\t\t\tSubtotal\n";
 		for (int i = 0; i < container_order.size(); i++) {
 			cout << (i + 1) << ".\t\t\t" << container_order.at(i) << "\t\t\t" << container_quantity.at(i) << " x " << container_price.at(i) << "\t\t\t\t" << (container_quantity.at(i) * container_price.at(i)) << "\n";
 		}
-		cout << "\n";
 	}
 
 	// computation of age
