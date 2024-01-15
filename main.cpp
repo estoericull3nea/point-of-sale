@@ -121,6 +121,10 @@ public:
 		// age_computation(); // compute the age
 		update_order();
 		// -------
+
+		display_orders();
+		cout << "Total is: " << get_total() << "\n";
+
 	}
 
 	// if beef
@@ -481,7 +485,8 @@ public:
 				}
 
 			} else {
-				cout << "Not\n";
+
+				ask_to_delete_order();
 				return true;
 			}
 		}
@@ -490,8 +495,93 @@ public:
 		return false;
 	}
 
+	// code here
+	bool ask_to_delete_order() {
+
+		char delete_or_not;
+		int index;
+
+
+		do {
+			cout << "Do you want to delete your order? [y/n]: ";
+			cin >> delete_or_not;
+
+			if (delete_or_not != 'y' && delete_or_not != 'n') {
+				cout << "Invalid input. Please enter 'y' or 'n'.\n";
+			}
+		} while (delete_or_not != 'y' && delete_or_not != 'n');
+		// after validation
+
+		if (tolower(delete_or_not) == 'y') {
+		start:
+			cout << "Deleting order...\n";
+
+			display_orders();
+
+			do {
+				cout << "Enter index to delete: ";
+				cin >> index;
+
+				if (cin.fail()) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Invalid input. Please enter a valid index (an integer).\n";
+				} else {
+					if (index <= 0) {
+						cout << "Invalid input. Please enter a non-negative index.\n";
+					} else if (index > container_order.size()) {
+						cout << "Invalid input.\n";
+
+					}
+				}
+			} while (index <= 0 || cin.fail() || index > container_order.size());
+			// after validation
+
+			index--;
+			cout << "The index is " << index << "\n";
+			cout << "You selected " << container_order.at(index) << ", Quantity is " << container_quantity.at(index) << "\n";
+
+			container_order.erase(container_order.begin() + index);
+			container_price.erase(container_price.begin() + index);
+			// container_date_time.erase(container_date_time.begin() + index);
+			container_quantity.erase(container_quantity.begin() + index);
+
+			cout << "Order deleted.\n";
+
+			if (container_order.size() >= 1) {
+				display_orders();
+
+				char delete_again;
+				do {
+					cout << "Do you want to delete again? [y/n]: ";
+					cin >> delete_again;
+
+					if (delete_again != 'y' && delete_again != 'n') {
+						cout << "Invalid input. Please enter 'y' or 'n'.\n";
+					}
+				} while (delete_again != 'y' && delete_again != 'n');
+				// after validation
+
+				if (tolower(delete_again) == 'y') {
+					goto start;
+				} else {
+					cout << "Not delete again.\n";
+					ask_to_order_again();
+				}
+			} else {
+				cout << "No order(s).\n";
+				game_start();
+			}
+
+		} else {
+			cout << "Not.\n";
+		}
+		return false;
+	}
+
 	// display order
 	void display_orders() {
+		cout << "Your order(s) are.\n";
 		cout << "Index\t\t\tOrder\t\t\t\tQuantity\t\t\tSubtotal\n";
 		for (int i = 0; i < container_order.size(); i++) {
 			cout << (i + 1) << ".\t\t\t" << container_order.at(i) << "\t\t\t" << container_quantity.at(i) << " x " << container_price.at(i) << "\t\t\t\t" << (container_quantity.at(i) * container_price.at(i)) << "\n";
