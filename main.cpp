@@ -45,6 +45,12 @@ public:
 	vector<int> audit_delete_quantity;
 	// -------
 
+	// for audit update
+	vector<string> audit_update_date_and_time;
+	vector<string> audit_update_order;
+	vector<int> audit_update_quantity;
+	// -------
+
 	// constructor
 	Burger_POS() {
 		menu_for_beef_burger_init.push_back("Beef Burger"); 	 price_for_beef_burger_init.push_back(120);
@@ -447,6 +453,9 @@ public:
 
 						container_order.at(index) = new_order;
 						container_price.at(index) = change_price;
+
+						audit_update_order.push_back(new_order);
+						audit_update_date_and_time.push_back(get_current_date_and_time());
 						// done
 					} else if (tolower(choice_what_menu) == 'c') {
 						display_single_chick_burgers_menu();
@@ -473,7 +482,8 @@ public:
 
 						container_order.at(index) = new_order;
 						container_price.at(index) = change_price;
-
+						audit_update_order.push_back(new_order);
+						audit_update_date_and_time.push_back(get_current_date_and_time());
 						// done
 					} else {
 						cout << "Thank you!\n";
@@ -501,6 +511,9 @@ public:
 
 					container_quantity.at(index) = new_quantity;
 					cout << "Quantity edited.\n";
+
+					audit_update_quantity.push_back(new_quantity);
+					audit_update_date_and_time.push_back(get_current_date_and_time());
 					// done
 				}
 
@@ -673,6 +686,7 @@ public:
 			c "Thank you Come Again!\n";
 			display_all_added_orders();
 			display_all_deleted_orders();
+			display_all_updated_orders();
 			exit(1);
 		} else if (payment > overall_total) {
 			int p = payment - overall_total;
@@ -816,19 +830,38 @@ public:
 	}
 
 	void display_all_added_orders() {
-		cout << "Your order(s) history added are.\n";
-		cout << "Index\t\t\t\tOrder\t\t\t\t\tPrice\t\t\t\tQuantity\t\t\tDate and Time\n";
-		for(int i=0; i<audit_add_order.size(); i++) {
-			cout << i+1 << ".\t\t\t\t" << audit_add_order.at(i) << "\t\t\t\t" << audit_add_price.at(i) << "\t\t\t\t" << audit_add_quantity.at(i) << "\t\t\t\t" << audit_add_date_and_time.at(i) << "\n";
+
+		if (audit_add_order.size() >= 1) {
+			cout << "Your order(s) history added are.\n";
+			cout << "Index\t\t\t\tOrder\t\t\t\t\tPrice\t\t\t\tQuantity\t\t\tDate and Time\n";
+			for (int i = 0; i < audit_add_order.size(); i++) {
+				cout << i + 1 << ".\t\t\t\t" << audit_add_order.at(i) << "\t\t\t\t" << audit_add_price.at(i) << "\t\t\t\t" << audit_add_quantity.at(i) << "\t\t\t\t" << audit_add_date_and_time.at(i) << "\n";
+			}
 		}
+
+
 	}
 
 	void display_all_deleted_orders() {
-		cout << "Your order(s) history deleted are.\n";
-		cout << "Index\t\t\t\tOrder\t\t\t\tQuantity\t\t\tDate and Time\n";
-		for(int i=0; i<audit_delete_order.size(); i++) {
-			cout << i+1 << ".\t\t\t\t" << audit_delete_order.at(i) << "\t\t\t\t" << audit_delete_quantity.at(i) << "\t\t\t\t" << audit_delete_date_and_time.at(i) << "\n";
+		if (audit_delete_order.size() >= 1) {
+			cout << "Your order(s) history deleted are.\n";
+			cout << "Index\t\t\t\tOrder\t\t\t\tQuantity\t\t\tDate and Time\n";
+			for (int i = 0; i < audit_delete_order.size(); i++) {
+				cout << i + 1 << ".\t\t\t\t" << audit_delete_order.at(i) << "\t\t\t\t" << audit_delete_quantity.at(i) << "\t\t\t\t" << audit_delete_date_and_time.at(i) << "\n";
+			}
 		}
+
+	}
+
+	void display_all_updated_orders() {
+		if (audit_update_order.size() >= 1) {
+			cout << "Your order(s) history updated are.\n";
+			cout << "Index\t\t\t\tOrder\t\t\t\tQuantity\t\t\tDate and Time\n";
+			for (int i = 0; i < audit_update_order.size(); i++) {
+				cout << i + 1 << ".\t\t\t\t" << audit_update_order.at(i) << "\t\t\t\t" << audit_update_quantity.at(i) << "\t\t\t\t" << audit_update_date_and_time.at(i) << "\n";
+			}
+		}
+
 	}
 
 	// returning calculated discount (int)
@@ -888,7 +921,9 @@ public:
 int main() {
 	Burger_POS _burger;
 
-	_burger.game_start();
+	cout << "Hello. my friend!.\n";
+
+	// _burger.game_start();
 
 	return 0;
 }

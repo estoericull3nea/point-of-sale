@@ -5,13 +5,8 @@ D - done
 
 age computation - done
 payment method - done
-audit/history - not
+audit/history - done
 register/login - not
 
-discounted - done
-not discounted - done
 
-audit add - done
-audit update - done
-audit delete - not
 
