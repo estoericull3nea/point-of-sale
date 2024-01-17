@@ -4,6 +4,18 @@ U - done
 D - done
 
 age computation - done
-payment method - not
+payment method - done
 audit/history - not
 register/login - not
+
+discounted - done
+not discounted - done
+
+audit add - not
+audit update - not
+audit delete - not
+
+vector<string> audit_date_and_time;
+	vector<string> audit_order;
+	vector<int> audit_price;
+	vector<int> audit_quantity;

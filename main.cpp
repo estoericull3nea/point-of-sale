@@ -24,13 +24,19 @@ public:
 
 	// store order
 	vector<string> container_order;
-	vector<string> container_date_time;
 	vector<int> container_quantity;
 	vector<int> container_price;
 	// -------
 
 	// global variable
 	int discounted = 0;
+	// -------
+
+	// for audit
+	vector<string> audit_date_and_time;
+	vector<string> audit_order;
+	vector<int> audit_price;
+	vector<int> audit_quantity;
 	// -------
 
 	// constructor
@@ -317,6 +323,11 @@ public:
 			container_quantity.push_back(quantity);
 			container_price.push_back(price);
 
+			audit_order.push_back(order);
+			audit_quantity.push_back(quantity);
+			audit_price.push_back(price);
+			audit_date_and_time.push_back(get_current_date_and_time());
+
 			return true;
 		}
 		return false;
@@ -498,7 +509,6 @@ public:
 		return false;
 	}
 
-	// code here
 	bool ask_to_delete_order() {
 
 		char delete_or_not;
@@ -546,7 +556,7 @@ public:
 
 			container_order.erase(container_order.begin() + index);
 			container_price.erase(container_price.begin() + index);
-			// container_date_time.erase(container_date_time.begin() + index);
+
 			container_quantity.erase(container_quantity.begin() + index);
 
 			cout << "Order deleted.\n";
@@ -603,7 +613,7 @@ public:
 			cin >> age;
 
 			// Check if the input is a positive integer
-			if (cin.fail() || age < 0) {
+			if (cin.fail() || age <= 0) {
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				cout << "Invalid input. Please enter a non-negative integer for age." << endl;
@@ -624,9 +634,183 @@ public:
 		}
 
 		// payment
+		payment_method(discounted, age);
 	}
 
-	
+	void payment_method(int overall_total, int age) {
+
+		int payment;
+		do {
+			cout << "\nEnter payment: ";
+			if (!(cin >> payment)) {
+
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "\n\t\t===============================================================" << endl;
+				cout << "\t\t   Invalid input. Please enter a valid non-negative integer." << endl;
+				cout << "\t\t===============================================================\n" << endl;
+			} else if (payment <= 0) {
+				cout << "\n\t\t===============================================================" << endl;
+				cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+				cout << "\t\t===============================================================\n" << endl;
+			} else {
+				break;
+			}
+		} while (true);
+
+		if (payment == overall_total) {
+
+			c "Thank you Come Again!\n";
+			display_all_added_orders();
+			exit(1);
+		} else if (payment > overall_total) {
+			int p = payment - overall_total;
+
+			c "Here is your change: " << p << "\n";
+			c "Thank you Come Again!\n";
+			exit(1);
+		} else if (payment < overall_total) {
+		start:
+
+			char add_more;
+			int add_money;
+			cout << "\n\t\t==============================================" << endl;
+			cout << "\t\t\tPlease add more " << overall_total - payment << " to pay this!\n";
+			cout << "\t\t==============================================\n" << endl;
+
+			while (overall_total > payment) {
+
+				do {
+					cout << "\nDo you want to add more? [y/n]: ";
+					if (!(cin >> add_more) || (add_more != 'y' && add_more != 'n')) {
+
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << "\n\t\t=======================================================" << endl;
+						cout << "\t\t\tInvalid input. Please enter 'y' or 'n'." << endl;
+						cout << "\t\t=======================================================\n" << endl;
+					} else {
+
+						break;
+					}
+				} while (true);
+
+				if (add_more == 'y' || add_more == 'Y') {
+					do {
+						cout << "\nAdd Money: ";
+						if (!(cin >> add_money)) {
+
+							cin.clear();
+							cin.ignore(numeric_limits<streamsize>::max(), '\n');
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t   Invalid input. Please enter a valid non-negative integer." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else if (add_money <= 0) {
+							cout << "\n\t\t===============================================================" << endl;
+							cout << "\t\t  Invalid Input: Please input valid integer." << endl;
+							cout << "\t\t===============================================================\n" << endl;
+						} else {
+
+							break;
+						}
+					} while (true);
+
+					cout << "You entered additional money: " << add_money << "\n";
+					if (add_money <= 0) {
+						cout << "\nInvalid Input of Money\n";
+					} else {
+						add_money += payment;
+						payment = add_money;
+						if (payment < overall_total) {
+
+							cout << "\n\t\t==============================================" << endl;
+							cout << "\t\t\tPlease Add more " << overall_total - payment << " to pay this!\n";
+							cout << "\t\t==============================================\n" << endl;
+
+						} else if (payment == overall_total) {
+
+							cout << "\nExact Amount, No Change\n";
+							c "Thank you Come Again!\n";
+							exit(1);
+						} else if (payment > overall_total) {
+
+							cout << "\nHere is your change " << payment - overall_total << " Thank you for coming and ordering!\n";
+							exit(1);
+						}
+					}
+
+				} else {
+					cout << "not adding money.\n";
+
+					char del_or_not;
+
+					do {
+						cout << "Do you want to delete your order(s)? [y/n]: ";
+						cin >> del_or_not;
+
+						if (del_or_not != 'y' && del_or_not != 'n') {
+							cout << "Invalid input. Please enter 'y' or 'n'.\n";
+						}
+
+					} while (del_or_not != 'y' && del_or_not != 'n');
+					// after validation
+
+					if (tolower(del_or_not) == 'y') {
+						cout << "deleting order.\n";
+
+						display_orders();
+
+						int index;
+						do {
+							cout << "Enter index to delete: ";
+							cin >> index;
+
+							if (cin.fail() || index <= 0 || index > container_order.size()) {
+								cout << "Invalid input. Please enter a valid non-negative integer index.\n";
+
+								cin.clear();
+								cin.ignore(numeric_limits<streamsize>::max(), '\n');
+							}
+
+						} while (cin.fail() || index <= 0 || index > container_order.size());
+						// after validation
+
+						index--;
+
+						cout << "You selected " << container_order.at(index) << "\n";
+						cout << "Quantity is " << container_quantity.at(index) << "\n";
+
+						container_order.erase(container_order.begin() + index);
+						container_price.erase(container_price.begin() + index);
+
+						container_quantity.erase(container_quantity.begin() + index);
+
+						cout << "Order deleted.\n";
+
+						if (container_order.size() <= 0) {
+							cout << "No Order(s).\n";
+							game_start();
+						} else {
+							// code here
+							cout << "Total is: " << get_total() << ".\n";
+							age_computation();
+						}
+					} else {
+						goto start;
+					}
+
+				}
+			}
+		}
+	}
+
+	void display_all_added_orders() {
+		cout << "Your order(s) history are.\n";
+		cout << "Index\t\t\t\tOrder\t\t\t\t\tPrice\t\t\t\tQuantity\t\t\tDate and Time\n";
+		for(int i=0; i<audit_order.size(); i++) {
+			cout << i+1 << ".\t\t\t\t" << audit_order.at(i) << "\t\t\t\t" << audit_price.at(i) << "\t\t\t\t" << audit_quantity.at(i) << "\t\t\t\t" << audit_date_and_time.at(i) << "\n";
+		}
+	}
 
 	// returning calculated discount (int)
 	int discount_calculation(int total) {
