@@ -6,7 +6,8 @@
 #include <chrono>
 #include <iomanip>
 #include <sstream>
-#include <thread>
+#include <cctype> // for isdigit, isalpha, isupper, islower
+#include <conio.h>
 #define c cout <<
 using namespace std;
 
@@ -921,9 +922,106 @@ public:
 int main() {
 	Burger_POS _burger;
 
-	cout << "Hello. my friend!.\n";
+	cout << "Hello. my friend!\n";
+	cout << "Please register first.\n";
+
+	string username;
+	do {
+		cout << "Enter username: ";
+		// getline(cin, username);
+		cin >> username;
+
+		if (username.length() < 5) {
+			cout << "Username must be at least 5 characters long. Try again." << endl;
+		}
+
+		if (username.find(' ') != string::npos) {
+			cout << "Username cannot contain spaces. Try again." << endl;
+		}
+
+	} while (username.length() < 5 || username.find(' ') != string::npos);
+	cout << "Username accepted: " << username << endl;
+
+	string password;
+
+	// Validation checks
+	bool hasUpperCase = false;
+	bool hasLowerCase = false;
+	bool hasDigit = false;
+	bool hasSpecialChar = false;
+
+	do {
+		cout << "Enter password: ";
+
+		// Masking the password on Windows using _getch
+		char ch;
+		while ((ch = _getch()) != '\r') { // '\r' is the carriage return character
+			if (ch == '\b') {  // Handle backspace
+				if (!password.empty()) {
+					password.pop_back();
+					std::cout << "\b \b";  // Move cursor back and erase the character
+				}
+			} else {
+				password.push_back(ch);
+				std::cout << '*';
+			}
+		}
+
+		cout << endl;
+
+		// Reset flags for each attempt
+		hasUpperCase = false;
+		hasLowerCase = false;
+		hasDigit = false;
+		hasSpecialChar = false;
+
+		// Validation checks
+		for (char ch : password) {
+			if (isupper(ch)) {
+				hasUpperCase = true;
+			} else if (islower(ch)) {
+				hasLowerCase = true;
+			} else if (isdigit(ch)) {
+				hasDigit = true;
+			} else if (!isalnum(ch)) {
+				hasSpecialChar = true;
+			}
+		}
+
+		if (password.length() < 8) {
+			cout << "Error: Password must be at least 8 characters long. Try again." << endl;
+		} else if (!hasUpperCase) {
+			cout << "Error: Password must contain at least one uppercase letter. Try again." << endl;
+		} else if (!hasLowerCase) {
+			cout << "Error: Password must contain at least one lowercase letter. Try again." << endl;
+		} else if (!hasDigit) {
+			cout << "Error: Password must contain at least one digit. Try again." << endl;
+		} else if (!hasSpecialChar) {
+			cout << "Error: Password must contain at least one special character. Try again." << endl;
+		}
+
+	} while (password.length() < 8 || !hasUpperCase || !hasLowerCase || !hasDigit || !hasSpecialChar);
+
+	cout << "Password accepted!" << endl;
+
+	// validation is done
+	// login
+
+	cout << "Account registerd, Login!.\n";
+
+	string login_username;
+	cout << "Enter username: ";
+	cin >> login_username;
+
+
+	string login_password;
+	cout << "Enter password: ";
+	cin >> login_password;
+
 
 	// _burger.game_start();
 
 	return 0;
 }
+
+
