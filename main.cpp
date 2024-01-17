@@ -32,11 +32,17 @@ public:
 	int discounted = 0;
 	// -------
 
-	// for audit
-	vector<string> audit_date_and_time;
-	vector<string> audit_order;
-	vector<int> audit_price;
-	vector<int> audit_quantity;
+	// for audit add
+	vector<string> audit_add_date_and_time;
+	vector<string> audit_add_order;
+	vector<int> audit_add_price;
+	vector<int> audit_add_quantity;
+	// -------
+
+	// for audit delete
+	vector<string> audit_delete_date_and_time;
+	vector<string> audit_delete_order;
+	vector<int> audit_delete_quantity;
 	// -------
 
 	// constructor
@@ -323,10 +329,10 @@ public:
 			container_quantity.push_back(quantity);
 			container_price.push_back(price);
 
-			audit_order.push_back(order);
-			audit_quantity.push_back(quantity);
-			audit_price.push_back(price);
-			audit_date_and_time.push_back(get_current_date_and_time());
+			audit_add_order.push_back(order);
+			audit_add_quantity.push_back(quantity);
+			audit_add_price.push_back(price);
+			audit_add_date_and_time.push_back(get_current_date_and_time());
 
 			return true;
 		}
@@ -554,6 +560,10 @@ public:
 			cout << "The index is " << index << "\n";
 			cout << "You selected " << container_order.at(index) << ", Quantity is " << container_quantity.at(index) << "\n";
 
+			audit_delete_order.push_back(container_order.at(index));
+			audit_delete_quantity.push_back(container_quantity.at(index));
+			audit_delete_date_and_time.push_back(get_current_date_and_time());
+
 			container_order.erase(container_order.begin() + index);
 			container_price.erase(container_price.begin() + index);
 
@@ -662,6 +672,7 @@ public:
 
 			c "Thank you Come Again!\n";
 			display_all_added_orders();
+			display_all_deleted_orders();
 			exit(1);
 		} else if (payment > overall_total) {
 			int p = payment - overall_total;
@@ -805,10 +816,18 @@ public:
 	}
 
 	void display_all_added_orders() {
-		cout << "Your order(s) history are.\n";
+		cout << "Your order(s) history added are.\n";
 		cout << "Index\t\t\t\tOrder\t\t\t\t\tPrice\t\t\t\tQuantity\t\t\tDate and Time\n";
-		for(int i=0; i<audit_order.size(); i++) {
-			cout << i+1 << ".\t\t\t\t" << audit_order.at(i) << "\t\t\t\t" << audit_price.at(i) << "\t\t\t\t" << audit_quantity.at(i) << "\t\t\t\t" << audit_date_and_time.at(i) << "\n";
+		for(int i=0; i<audit_add_order.size(); i++) {
+			cout << i+1 << ".\t\t\t\t" << audit_add_order.at(i) << "\t\t\t\t" << audit_add_price.at(i) << "\t\t\t\t" << audit_add_quantity.at(i) << "\t\t\t\t" << audit_add_date_and_time.at(i) << "\n";
+		}
+	}
+
+	void display_all_deleted_orders() {
+		cout << "Your order(s) history deleted are.\n";
+		cout << "Index\t\t\t\tOrder\t\t\t\tQuantity\t\t\tDate and Time\n";
+		for(int i=0; i<audit_delete_order.size(); i++) {
+			cout << i+1 << ".\t\t\t\t" << audit_delete_order.at(i) << "\t\t\t\t" << audit_delete_quantity.at(i) << "\t\t\t\t" << audit_delete_date_and_time.at(i) << "\n";
 		}
 	}
 

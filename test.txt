@@ -11,11 +11,7 @@ register/login - not
 discounted - done
 not discounted - done
 
-audit add - not
-audit update - not
+audit add - done
+audit update - done
 audit delete - not
 
-vector<string> audit_date_and_time;
-	vector<string> audit_order;
-	vector<int> audit_price;
-	vector<int> audit_quantity;
