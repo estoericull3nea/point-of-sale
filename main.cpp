@@ -118,12 +118,15 @@ public:
 		cout << "Total is: " << get_total() << "\n";
 		ask_to_order_again(); // asking to order again
 		cout << "Total is: " << get_total() << "\n";
-		// age_computation(); // compute the age
 		update_order();
 		// -------
 
 		display_orders();
 		cout << "Total is: " << get_total() << "\n";
+		// -------
+
+		// age computation
+		age_computation();
 
 	}
 
@@ -619,7 +622,11 @@ public:
 			discounted = get_total();
 			cout << "Total is " << discounted << "\n";
 		}
+
+		// payment
 	}
+
+	
 
 	// returning calculated discount (int)
 	int discount_calculation(int total) {

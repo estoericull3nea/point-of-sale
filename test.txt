@@ -1,4 +1,9 @@
 C - done
 R - done
 U - done
-D - need to implement
+D - done
+
+age computation - done
+payment method - not
+audit/history - not
+register/login - not
