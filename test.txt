@@ -6,4 +6,4 @@ D - done
 age computation - done
 payment method - done
 audit/history - done
-register/login - not
+register/login - done

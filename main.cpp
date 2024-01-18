@@ -688,12 +688,17 @@ public:
 			display_all_added_orders();
 			display_all_deleted_orders();
 			display_all_updated_orders();
+			cout << "Logged Out.\n";
 			exit(1);
 		} else if (payment > overall_total) {
 			int p = payment - overall_total;
 
 			c "Here is your change: " << p << "\n";
 			c "Thank you Come Again!\n";
+			display_all_added_orders();
+			display_all_deleted_orders();
+			display_all_updated_orders();
+			cout << "Logged Out.\n";
 			exit(1);
 		} else if (payment < overall_total) {
 		start:
@@ -757,10 +762,18 @@ public:
 
 							cout << "\nExact Amount, No Change\n";
 							c "Thank you Come Again!\n";
+							display_all_added_orders();
+							display_all_deleted_orders();
+							display_all_updated_orders();
+							cout << "Logged Out.\n";
 							exit(1);
 						} else if (payment > overall_total) {
 
 							cout << "\nHere is your change " << payment - overall_total << " Thank you for coming and ordering!\n";
+							display_all_added_orders();
+							display_all_deleted_orders();
+							display_all_updated_orders();
+							cout << "Logged Out.\n";
 							exit(1);
 						}
 					}
@@ -1005,22 +1018,41 @@ int main() {
 	cout << "Password accepted!" << endl;
 
 	// validation is done
-	// login
 
+	// login
 	cout << "Account registerd, Login!.\n";
+	// code here
 
 	string login_username;
 	cout << "Enter username: ";
-	cin >> login_username;
-
+	cin >> username;
 
 	string login_password;
 	cout << "Enter password: ";
-	cin >> login_password;
+	char ch;
+	while ((ch = _getch()) != '\r') {
+		if (ch == '\b') {
+			if (!login_password.empty()) {
+				login_password.pop_back();
+				std::cout << "\b \b";
+			}
+		} else {
+			login_password.push_back(ch);
+			std::cout << '*';
+		}
+	}
 
+	while (true) {
 
-	// _burger.game_start();
+		if (login_username != username || login_password != password) {
+			cout << "Invalid Credentials.\n";
+		} else if (login_username == username && login_password == password) {
+			cout << "Logged In.\n";
+			break;
+		}
+	}
 
+	_burger.game_start();
 	return 0;
 }
 
