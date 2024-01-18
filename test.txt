@@ -8,4 +8,5 @@ payment method - done
 audit/history - done
 register/login - done
 
-comments
+comments - done
+polished - done
